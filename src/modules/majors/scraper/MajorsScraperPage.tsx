@@ -6,6 +6,7 @@ import { useMajors } from '../hooks/useMajors';
 
 export const MajorsScraperPage = () => {
   const { scrapeMajors, isLoading: isLoadingScraper, error: scraperError } = useScrapeMajors();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { createMajors, isLoading: isLoadingCreate, error: createError } = useMajors();
   const formMethods = useForm<CreateScrapedMajorsFormTypes>({
     defaultValues: { majors: '' },

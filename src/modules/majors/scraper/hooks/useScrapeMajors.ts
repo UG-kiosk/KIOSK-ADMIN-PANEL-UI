@@ -20,7 +20,7 @@ export const useScrapeMajors = () => {
       console.log(scraperdMajors);
 
       return scraperdMajors;
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError(error);
       setIsLoading(false);
     }

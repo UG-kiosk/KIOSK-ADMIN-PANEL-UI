@@ -12,7 +12,7 @@ export const useMajors = () => {
       setIsLoading(true);
       await axios.post(environment.KIOSK_API_URL + '/majors', majors);
       setIsLoading(false);
-    } catch (error: any) {
+    } catch (error: unknown) {
       setIsLoading(true);
       setError(error);
     }
