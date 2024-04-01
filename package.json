@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "npx eslint .",
+    "prettier:ci": "npx prettier --list-different ."
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
