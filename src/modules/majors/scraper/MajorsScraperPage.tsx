@@ -3,11 +3,11 @@ import { useScrapeMajors } from './hooks';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { CreateScrapedMajorsFormTypes } from './types/createScrapedMajorsFormTypes';
 import { useMajors } from '../hooks/useMajors';
+import { CreateMajorRequest } from '../types/createMajorRequest';
 
 export const MajorsScraperPage = () => {
   const { scrapeMajors, isLoading: isLoadingScraper, error: scraperError } = useScrapeMajors();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { createMajors, isLoading: isLoadingCreate, error: createError } = useMajors();
+  const { createMajors } = useMajors();
   const formMethods = useForm<CreateScrapedMajorsFormTypes>({
     defaultValues: { majors: '' },
   });
@@ -28,7 +28,7 @@ export const MajorsScraperPage = () => {
   const onSubmit: SubmitHandler<CreateScrapedMajorsFormTypes> = useCallback(
     async ({ majors }: CreateScrapedMajorsFormTypes) => {
       console.log(majors);
-      await createMajors(majors as CreateMajorRequest[]);
+      await createMajors(majors as unknown as CreateMajorRequest[]);
       console.log('Majors created');
     },
     [createMajors],

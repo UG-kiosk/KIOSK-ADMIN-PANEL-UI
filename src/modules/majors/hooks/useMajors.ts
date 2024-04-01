@@ -12,7 +12,8 @@ export const useMajors = () => {
       setIsLoading(true);
       await axios.post(environment.KIOSK_API_URL + '/majors', majors);
       setIsLoading(false);
-    } catch (error: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       setIsLoading(true);
       setError(error);
     }
