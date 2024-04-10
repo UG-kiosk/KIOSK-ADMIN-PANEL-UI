@@ -26,6 +26,7 @@
     "no-this-before-super": "error",
     "no-regex-spaces": "error",
     "no-unexpected-multiline": "error",
+    "react/display-name": [false],
     "no-useless-rename": [
       "error",
       {
