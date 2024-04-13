@@ -13,5 +13,5 @@ declare const UGThemeProvider: ({
   children,
   theme,
 }: UGThemeProviderProps) => import('@emotion/react/jsx-runtime').JSX.Element;
-export { BASE_THEME, UGThemeProvider, useTheme, createStyles };
+export { BASE_THEME, UGThemeProvider, createStyles };
 export type { UGTheme, UGThemeProviderProps, Styles };

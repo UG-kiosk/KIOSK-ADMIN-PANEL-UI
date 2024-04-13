@@ -12,6 +12,9 @@ type ButtonType = {
 
 const Button = forwardRef<HTMLButtonElement, ButtonType>(
   ({ label, type = 'button', variant = 'primary', disabled = false, styles, dataTestId, ...buttonProps }, ref) => {
+    // For lint purposes
+    console.log(variant);
+
     return (
       <button ref={ref} type={type} disabled={disabled} css={styles} data-testid={dataTestId} {...buttonProps}>
         {label}

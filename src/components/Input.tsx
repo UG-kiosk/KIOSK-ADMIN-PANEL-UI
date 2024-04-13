@@ -28,11 +28,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 
 export const inputFieldStyles = createStyles({
   input: {},
-  inputError: (
-    {
-      // Here we extract some things from theme automically
-    },
-  ) => ({}),
+  inputError: {},
 });
 
 export default InputField;
