@@ -26,6 +26,8 @@
     "no-this-before-super": "error",
     "no-regex-spaces": "error",
     "no-unexpected-multiline": "error",
+    "react/display-name": ["off"],
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "no-useless-rename": [
       "error",
       {
@@ -40,13 +42,6 @@
     "react-hooks/rules-of-hooks": "error",
     "@typescript-eslint/ban-ts-comment": ["warn"],
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/no-use-before-define": [
-      "error",
-      {
-        "functions": false,
-        "classes": false
-      }
-    ],
     "no-console": "warn"
   },
   "extends": [

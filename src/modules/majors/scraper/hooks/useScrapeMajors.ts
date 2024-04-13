@@ -17,8 +17,6 @@ export const useScrapeMajors = () => {
       );
       setIsLoading(false);
 
-      console.log(scraperdMajors);
-
       return scraperdMajors;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
