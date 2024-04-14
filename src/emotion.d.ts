@@ -1,6 +1,11 @@
 import '@emotion/react';
-import { UGTheme } from './theme/theme';
 
 declare module '@emotion/react' {
-  export interface Theme extends UGTheme {}
+  export interface Theme {
+    colors: Colors;
+    opacity: Opacity;
+    placement: Placement;
+    sizes: Sizes;
+    typography: Typography;
+  }
 }

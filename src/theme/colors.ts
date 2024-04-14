@@ -1,8 +1,9 @@
-type Color = 'primary' | 'secondary';
+type Color = 'primary' | 'secondary' | 'error';
 
 export type Colors = Record<Color, string>;
 
-export const baseColors: Colors = {
+export const colors: Colors = {
   primary: '#ffffff',
   secondary: '#ffffff',
+  error: '#ffffff',
 };

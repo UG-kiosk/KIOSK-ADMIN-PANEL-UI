@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import { MouseEvent, PropsWithChildren, useMemo } from 'react';
-import { Styles } from '../theme/utils';
+import { MouseEvent, PropsWithChildren } from 'react';
 import { FontSize, FontWeight } from '../theme/typography';
+import { Styles } from '../theme/utils';
 
 type BodyTags = 'p' | 'span';
 type HeadingTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -41,23 +41,21 @@ export const Typography = ({
   size = 'md',
   weight = 'normal',
 }: TypographyProps) => {
-  const typographyStyles = useMemo(() => getTypographyStyles(size, weight), [size, weight]);
-
   return (
     <TypographyWrapper
       as={tag}
       data-testid={dataTestId}
-      css={[typographyStyles, lineHeight && { lineHeight: lineHeight }, styles]}
+      css={({ typography }) => [
+        {
+          fontSize: typography.fontSize[size],
+          fontWeight: typography.fontWeight[weight],
+        },
+        lineHeight && { lineHeight: `${lineHeight}px` },
+        styles,
+      ]}
       onClick={onClick}
     >
       {children}
     </TypographyWrapper>
   );
 };
-
-const getTypographyStyles =
-  (fontSize: FontSize, fontWeight: FontWeight): Styles =>
-  ({ typography }) => ({
-    fontSize: typography.fontSize[fontSize],
-    fontWeight: typography.fontWeight[fontWeight],
-  });

@@ -20,8 +20,8 @@ const InputError = ({ errorMessage, styles, dataTestId, size = 'sm', weight = 'b
   </Typography>
 );
 
-const inputErrorStyles: Styles = ({ colors, typography }) => ({
-  color: colors.error,
+const inputErrorStyles: Styles = ({ typography }) => ({
+  color: 'black',
   lineHeight: typography.fontSize.sm,
 });
 

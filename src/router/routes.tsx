@@ -13,6 +13,13 @@ const router = createBrowserRouter(
           return { Component: ects.MajorsScraperPage };
         }}
       ></Route>
+      <Route
+        path={paths.ects}
+        lazy={async () => {
+          const ects = await import('../modules/ects/ectsForm/EctsForm');
+          return { Component: ects.default };
+        }}
+      ></Route>
     </Route>,
   ),
 );

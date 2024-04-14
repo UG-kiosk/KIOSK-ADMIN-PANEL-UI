@@ -1,5 +1,4 @@
-import { Interpolation } from '@emotion/react';
-import { UGTheme as Theme } from './theme';
+import { Interpolation, Theme } from '@emotion/react';
 
 /**
  * Helper type that allows for styling with access to Theme.
@@ -17,8 +16,6 @@ export type Styles = Interpolation<Theme>;
  *    other: (theme) => ({...})
  * })`
  */
-export declare function createStyles<
-  T extends {
-    [key: string]: Interpolation<Theme>;
-  },
->(arg: T): T;
+export function createStyles<T extends { [key: string]: Interpolation<Theme> }>(arg: T): T {
+  return arg;
+}

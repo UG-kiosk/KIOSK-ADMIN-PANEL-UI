@@ -1,7 +1,8 @@
 import './App.css';
+import InputField from './components/Input';
 
 function App() {
-  return <p>Root page</p>;
+  return <InputField></InputField>;
 }
 
 export default App;

@@ -2,6 +2,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import * as RadixSelect from '@radix-ui/react-select';
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react';
 import { Styles, createStyles } from '../theme/utils';
+import Angledown from '../assets/Angledown';
 
 export type DropdownOption = {
   value: string;
@@ -13,6 +14,7 @@ const Dropdown = ({ children, ...props }: RadixSelect.SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelectOpen = () => setIsOpen(isOpen => !isOpen);
+
   return (
     <RadixSelect.Root open={isOpen} onOpenChange={handleSelectOpen} {...props}>
       {children}
@@ -29,7 +31,9 @@ const DropdownTrigger = forwardRef<ElementRef<typeof RadixSelect.Trigger>, Trigg
   ({ children, styles, dataTestId, ...props }, ref) => (
     <RadixSelect.Trigger ref={ref} css={[dropdownStyles.dropdownTrigger, styles]} data-testid={dataTestId} {...props}>
       {children}
-      <RadixSelect.Icon asChild>{/* We Have to add arrow down icon for select */}</RadixSelect.Icon>
+      <RadixSelect.Icon asChild>
+        <Angledown />
+      </RadixSelect.Icon>
     </RadixSelect.Trigger>
   ),
 );
