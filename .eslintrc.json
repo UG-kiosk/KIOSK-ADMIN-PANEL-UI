@@ -8,9 +8,18 @@
     "node": true
   },
   "rules": {
-    "semi": ["error", "always"],
-    "semi-style": ["error", "last"],
-    "quotes": ["error", "single"],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "semi-style": [
+      "error",
+      "last"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
     "brace-style": "error",
     "space-before-blocks": "error",
     "no-multi-spaces": "error",
@@ -26,8 +35,17 @@
     "no-this-before-super": "error",
     "no-regex-spaces": "error",
     "no-unexpected-multiline": "error",
-    "react/display-name": ["off"],
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "react/display-name": [
+      "off"
+    ],
+    "react/no-unknown-property": [
+      "error",
+      {
+        "ignore": [
+          "css"
+        ]
+      }
+    ],
     "no-useless-rename": [
       "error",
       {
@@ -40,7 +58,9 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "error",
     "react-hooks/rules-of-hooks": "error",
-    "@typescript-eslint/ban-ts-comment": ["warn"],
+    "@typescript-eslint/ban-ts-comment": [
+      "warn"
+    ],
     "@typescript-eslint/no-unused-vars": "error",
     "no-console": "warn"
   },
@@ -50,10 +70,18 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:storybook/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react", "prettier", "jest", "cypress", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "prettier",
+    "jest",
+    "cypress",
+    "react-hooks"
+  ],
   "settings": {
     "react": {
       "version": "detect"

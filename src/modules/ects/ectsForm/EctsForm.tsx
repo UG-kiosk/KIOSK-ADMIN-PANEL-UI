@@ -2,7 +2,7 @@ import React from 'react';
 import { useEctsForm } from './hooks/useEctsForm';
 import { Controller } from 'react-hook-form';
 import FormField from '../../../components/FormField';
-import Button from '../../../components/Button';
+import Button from '../../../components/Button/Button';
 import { createStyles } from '../../../theme/utils';
 import Dropdown from '../../../components/Dropdown';
 import { Typography } from '@mui/material';

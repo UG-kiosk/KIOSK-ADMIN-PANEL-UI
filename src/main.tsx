@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import { RouterProvider } from 'react-router-dom';
 import router from './router/routes.tsx';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './theme/theme.ts';
 import { MutationCache, QueryCache, QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
+import './styles/index.css';
 
 const developmentConfiguration: QueryClientConfig = {
   mutationCache: new MutationCache({

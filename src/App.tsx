@@ -1,8 +1,13 @@
-import './App.css';
-import InputField from './components/Input';
+import Button from './components/Button/Button';
 
 function App() {
-  return <InputField></InputField>;
+  return (
+    <>
+      <Button label="Dupar" variant="secondary" />
+      <Button label="Dupar" variant="accept" />
+      <Button label="Dupar" variant="cancel" />
+      <Button label="Dupar" />;
+    </>
+  );
 }
-
 export default App;
