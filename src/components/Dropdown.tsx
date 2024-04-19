@@ -65,7 +65,7 @@ type ItemProps = ComponentPropsWithoutRef<typeof RadixSelect.Item> & {
 
 const DropDownItem = forwardRef<ElementRef<typeof RadixSelect.Item>, ItemProps>(
   ({ children, styles, ...props }, ref) => (
-    <RadixSelect.Item ref={ref} {...props} css={styles}>
+    <RadixSelect.Item ref={ref} {...props} css={[dropdownStyles.DropDownItem, styles]}>
       <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
     </RadixSelect.Item>
   ),
@@ -84,11 +84,98 @@ export default Dropdown;
 
 // Add styles
 const dropdownStyles = createStyles({
-  dropdownTrigger: {},
-  dropdownContent: {},
-  scrollAreaRoot: {},
-  scrollAreaViewport: {},
-  scrollAreaScrollbar: {},
-  scrollAreaThumb: {},
-  fullWidthTrigger: {},
+  dropdownTrigger: ({ colors, typography }) => ({
+    position: 'relative',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 16,
+    padding: 12,
+    color: colors.lightGray,
+    backgroundColor: colors.whiteSmoke,
+    border: 'none',
+    borderBottom: `2px solid ${colors.lightGray}`,
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.normal,
+    lineHeight: 1,
+    outline: 'none',
+    cursor: 'pointer',
+    pointerEvents: 'all',
+    transition: 'border-bottom-color 300ms ease-in-out',
+    '&[data-state=open]': {
+      borderBottomColor: colors.lightGray,
+    },
+    '&[data-state=open] .select-icon': {
+      transform: 'translateY(-1px) rotate(180deg)',
+    },
+    '&:hover': {
+      borderBottomColor: colors.lightGray,
+    },
+    ['> span:first-of-type']: {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    },
+  }),
+  DropDownItem: ({ colors, typography }) => ({
+    position: 'relative',
+    padding: '12px 24px 12px 9px',
+    color: colors.lightGray,
+    backgroundColor: colors.white,
+    borderBottom: `1px solid ${colors.lightGray}`,
+    fontSize: typography.fontSize.md,
+    fontWeight: typography.fontWeight.normal,
+    lineHeight: 1,
+    gap: 8,
+    outline: 'none',
+    userSelect: 'none',
+    '&[data-highlighted]': {
+      outline: 'none',
+      backgroundColor: colors.whiteSmoke,
+      cursor: 'pointer',
+    },
+    '&[data-state="checked"]': {
+      outline: 'none',
+      backgroundColor: colors.whiteSmoke,
+      fontWeight: typography.fontWeight.bold,
+    },
+    '&:last-of-type': {
+      borderBottom: 'none',
+    },
+  }),
+  dropdownContent: ({ colors }) => ({
+    backgroundColor: colors.white,
+    border: `1px solid ${colors.whiteSmoke}`,
+    borderTopWidth: 0,
+    width: 'var(--radix-select-trigger-width)',
+  }),
+  scrollAreaRoot: ({ colors }) => ({
+    width: '100%',
+    height: '100%',
+    borderRadius: 4,
+    overflow: 'none',
+    backgroundColor: colors.white,
+  }),
+  scrollAreaViewport: {
+    width: '100%',
+    height: '100%',
+    maxHeight: 400,
+  },
+  scrollAreaScrollbar: ({ colors }) => ({
+    display: 'flex',
+    padding: '1px 2px 1px 2px',
+    background: colors.lightGray,
+    "&[data-orientation='vertical']": {
+      width: 10,
+    },
+  }),
+  scrollAreaThumb: ({ colors }) => ({
+    flex: 1,
+    borderRadius: 5,
+    position: 'relative',
+    background: colors.whiteSmoke,
+  }),
+  fullWidthTrigger: {
+    width: '100%',
+  },
 });
