@@ -10,9 +10,10 @@ export const fontSizes: Record<FontSize, string> = {
   '3xl': '28px',
 };
 
-export type FontWeight = 'normal' | 'medium' | 'bold';
+export type FontWeight = 'thin' | 'normal' | 'medium' | 'bold';
 
 export const fontWeights: Record<FontWeight, number> = {
+  thin: 300,
   normal: 400,
   medium: 500,
   bold: 600,

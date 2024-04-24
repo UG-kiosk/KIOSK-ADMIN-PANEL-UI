@@ -31,7 +31,7 @@ const DropdownTrigger = forwardRef<ElementRef<typeof RadixSelect.Trigger>, Trigg
   ({ children, styles, dataTestId, ...props }, ref) => (
     <RadixSelect.Trigger ref={ref} css={[dropdownStyles.dropdownTrigger, styles]} data-testid={dataTestId} {...props}>
       {children}
-      <RadixSelect.Icon asChild>
+      <RadixSelect.Icon asChild className="expand-icon">
         <Angledown />
       </RadixSelect.Icon>
     </RadixSelect.Trigger>
@@ -91,10 +91,10 @@ const dropdownStyles = createStyles({
     justifyContent: 'space-between',
     gap: 16,
     padding: 12,
-    color: colors.lightGray,
-    backgroundColor: colors.whiteSmoke,
-    border: 'none',
-    borderBottom: `2px solid ${colors.lightGray}`,
+    color: colors.dark,
+    backgroundColor: colors.white,
+    border: `1.5px solid ${colors.background}`,
+    borderRadius: 4,
     fontSize: typography.fontSize.md,
     fontWeight: typography.fontWeight.normal,
     lineHeight: 1,
@@ -109,24 +109,25 @@ const dropdownStyles = createStyles({
       transform: 'translateY(-1px) rotate(180deg)',
     },
     '&:hover': {
-      borderBottomColor: colors.lightGray,
+      backgroundColor: colors.light,
     },
     ['> span:first-of-type']: {
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
     },
+    // style icon child
+    svg: {
+      color: colors.softGreen,
+    },
   }),
   DropDownItem: ({ colors, typography }) => ({
     position: 'relative',
-    padding: '12px 24px 12px 9px',
-    color: colors.lightGray,
-    backgroundColor: colors.white,
-    borderBottom: `1px solid ${colors.lightGray}`,
+    padding: '12px 12px 12px 9px',
+    color: colors.dark,
     fontSize: typography.fontSize.md,
     fontWeight: typography.fontWeight.normal,
     lineHeight: 1,
-    gap: 8,
     outline: 'none',
     userSelect: 'none',
     '&[data-highlighted]': {
@@ -139,15 +140,19 @@ const dropdownStyles = createStyles({
       backgroundColor: colors.whiteSmoke,
       fontWeight: typography.fontWeight.bold,
     },
+    '&:first-of-type': {
+      borderRadius: '4px 4px 0 0',
+    },
     '&:last-of-type': {
-      borderBottom: 'none',
+      borderRadius: '0 0 4px 4px',
     },
   }),
   dropdownContent: ({ colors }) => ({
-    backgroundColor: colors.white,
+    borderRadius: 4,
+    margin: '5px auto',
+    backgroundColor: colors.light,
     border: `1px solid ${colors.whiteSmoke}`,
-    borderTopWidth: 0,
-    width: 'var(--radix-select-trigger-width)',
+    width: 'min-content',
   }),
   scrollAreaRoot: ({ colors }) => ({
     width: '100%',
@@ -165,7 +170,7 @@ const dropdownStyles = createStyles({
     display: 'flex',
     padding: '1px 2px 1px 2px',
     background: colors.lightGray,
-    "&[data-orientation='vertical']": {
+    '&[data-orientation="vertical"]': {
       width: 10,
     },
   }),

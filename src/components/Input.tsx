@@ -27,7 +27,19 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
 );
 
 export const inputFieldStyles = createStyles({
-  input: {},
+  input: ({ colors }) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: `0.75px solid ${colors.lightGray}`,
+    borderRadius: 25,
+    lineHeight: 1.75,
+    padding: '5px 15px',
+    '&:hover, &:focus': {
+      outline: 'none',
+      borderColor: colors.primaryBlue,
+    },
+  }),
   inputError: {},
 });
 

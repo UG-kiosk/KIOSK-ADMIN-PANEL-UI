@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
 import { Styles, createStyles } from '../../theme/utils';
 import { ComponentSize, sizes } from '../../theme/sizes';
+import { fontWeights } from '../../theme/typography';
 
 type ButtonVariant = 'primary' | 'secondary' | 'accept' | 'cancel';
 
@@ -50,6 +51,7 @@ const buttonStyles = createStyles({
       cursor: 'not-allowed',
     },
     boxShadow: '0px 4px 4px 0px #00000040',
+    fontWeight: fontWeights.medium,
   },
 });
 
@@ -68,30 +70,58 @@ const selectVariant = (variant: ButtonVariant) => {
 
 const buttonVariants = createStyles({
   primary: ({ colors }) => ({
+    backgroundColor: colors.primary,
     color: colors.white,
-    backgroundColor: colors.primaryBlue,
 
-    // TO JUSTYNA
-    // '&:enabled:hover, &:enabled:focus-visible': {
-    //   backgroundColor: colors.primaryBlue,
-    // MY PROPOSITION IS TO GIVE JUST DARKER BACKGROUND IT WOULD BE A FUNCTION WHICH MAKES COLOR DARKER
-    // },
+    '&:enabled:hover, &:enabled:focus-visible': {
+      backgroundColor: colors.darkBlue,
+    },
     '&:enabled:active': {
-      color: colors.secondaryBlue,
+      opacity: 0.9,
+    },
+    '&:disabled': {
+      color: colors.darkBlue,
     },
   }),
   secondary: ({ colors }) => ({
     color: colors.primaryBlue,
     backgroundColor: colors.white,
-    // active and hover
+
+    '&:enabled:hover, &:enabled:focus-visible': {
+      backgroundColor: colors.paper,
+    },
+    '&:enabled:active': {
+      opacity: 0.8,
+    },
+    '&:disabled': {
+      color: colors.lightGray,
+    },
   }),
   accept: ({ colors }) => ({
     color: colors.white,
-    backgroundColor: colors.primaryGreen,
+    backgroundColor: colors.softGreen,
+    '&:enabled:hover, &:enabled:focus-visible': {
+      backgroundColor: colors.darkenedGreen,
+    },
+    '&:enabled:active': {
+      opacity: 0.9,
+    },
+    '&:disabled': {
+      color: colors.darkenedGreen,
+    },
   }),
   cancel: ({ colors }) => ({
     color: colors.white,
-    backgroundColor: colors.primaryOrange,
+    backgroundColor: colors.softRed,
+    '&:enabled:hover, &:enabled:focus-visible': {
+      backgroundColor: colors.darkenedRed,
+    },
+    '&:enabled:active': {
+      opacity: 0.9,
+    },
+    '&:disabled': {
+      color: colors.darkenedRed,
+    },
   }),
 });
 

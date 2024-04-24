@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material';
 import Button from './components/Button/Button';
 import Dropdown from './components/Dropdown';
 import InputError from './components/InputError';
@@ -10,19 +9,18 @@ import FormField from './components/FormField';
 function App() {
   return (
     <>
-      <Button label="Dupar" variant="secondary" />
-      <Button label="Dupar" variant="accept" />
-      <Button label="Dupar" variant="cancel" />
-      <Button label="Dupar" />
-      <InputLabel label="Justyna" />
-      <InputError errorMessage="HEJ MEGA NIEDOBRZE" />
+      <Button label="lorem ipsum" variant="secondary" />
+      <Button label="lorem ipsum" variant="accept" />
+      <Button label="lorem ipsum" variant="cancel" />
+      <Button label="lorem ipsum" />
+      <br /> <br /> <br /> <br /> <br /> <br />
       <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Dropdown value={Degree.BACHELOR}>
+        <Dropdown value="lorem">
           <Dropdown.Trigger>
             <Dropdown.Value />
           </Dropdown.Trigger>
           <Dropdown.Content>
-            {Object.values(Degree).map(degree => (
+            {['lorem', 'ipsum', 'dolor', 'ehehehe', 'looooooooooorem'].map(degree => (
               <Dropdown.Item value={degree} key={degree}>
                 <Typography>{degree}</Typography>
               </Dropdown.Item>
@@ -30,14 +28,14 @@ function App() {
           </Dropdown.Content>
         </Dropdown>
       </div>
-      <FormField
+      {/* <FormField
         name="example"
         inputType="base"
-        label="TU JEST LABELKA TEGO TEXT FIELDU"
+        label="Lorem ipsum"
         isError
-        errorMessage="TU ERROR TEGO ZIOMEK"
+        errorMessage="this is an error message"
         styles={{ input: { maxWidth: 200 } }}
-      />
+      /> */}
     </>
   );
 }

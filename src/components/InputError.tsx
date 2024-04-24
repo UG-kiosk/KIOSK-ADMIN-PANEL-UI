@@ -20,9 +20,12 @@ const InputError = ({ errorMessage, styles, dataTestId, size = 'sm', weight = 'b
   </Typography>
 );
 
-const inputErrorStyles: Styles = ({ typography }) => ({
-  color: 'black',
-  lineHeight: typography.fontSize.sm,
+const inputErrorStyles: Styles = ({ typography, colors }) => ({
+  lineHeight: 1,
+  fontSize: typography.fontSize.xs,
+  fontWeight: typography.fontWeight.normal,
+  color: colors.error,
+  padding: '0px 15px',
 });
 
 export default InputError;

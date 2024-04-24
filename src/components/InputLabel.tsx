@@ -40,9 +40,13 @@ const InputLabel = ({
 );
 
 const inputLabelStyles = createStyles({
-  label: {
-    display: 'flex',
-  },
+  label: ({ typography, colors }) => ({
+    padding: '5px 0',
+    lineHeight: 1,
+    fontWeight: typography.fontWeight.medium,
+    fontSize: typography.fontSize.sm,
+    color: colors.dark,
+  }),
   asterisk: ({ colors }) => ({
     color: colors.error,
   }),
