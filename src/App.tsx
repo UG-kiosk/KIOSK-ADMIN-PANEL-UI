@@ -1,10 +1,6 @@
 import Button from './components/Button/Button';
 import Dropdown from './components/Dropdown';
-import InputError from './components/InputError';
-import InputLabel from './components/InputLabel';
 import { Typography } from './components/Typography';
-import { Degree } from './shared/constants/degree';
-import FormField from './components/FormField';
 
 function App() {
   return (
