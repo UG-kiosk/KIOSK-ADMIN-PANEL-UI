@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react';
-import { Styles, createStyles } from '../theme/utils';
+import { Styles, createStyles } from '../../theme/utils';
 
 export type InputFieldProps = {
   isError?: boolean;

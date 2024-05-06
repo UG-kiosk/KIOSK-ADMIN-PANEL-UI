@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { MouseEvent, PropsWithChildren } from 'react';
-import { FontSize, FontWeight } from '../theme/typography';
-import { Styles } from '../theme/utils';
+import { FontSize, FontWeight } from '../../theme/typography';
+import { Styles } from '../../theme/utils';
 
 type BodyTags = 'p' | 'span';
 type HeadingTags = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

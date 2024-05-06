@@ -1,6 +1,6 @@
 import Button from './components/Button/Button';
-import Dropdown from './components/Dropdown';
-import { Typography } from './components/Typography';
+import Dropdown from './components/Dropdown/Dropdown';
+import { Typography } from './components/Typography/Typography';
 
 function App() {
   return (
@@ -24,14 +24,6 @@ function App() {
           </Dropdown.Content>
         </Dropdown>
       </div>
-      {/* <FormField
-        name="example"
-        inputType="base"
-        label="Lorem ipsum"
-        isError
-        errorMessage="this is an error message"
-        styles={{ input: { maxWidth: 200 } }}
-      /> */}
     </>
   );
 }

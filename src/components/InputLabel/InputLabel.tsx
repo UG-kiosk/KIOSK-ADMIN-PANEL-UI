@@ -1,5 +1,5 @@
-import { Styles, createStyles } from '../theme/utils';
-import { Typography, TypographyProps } from './Typography';
+import { Styles, createStyles } from '../../theme/utils';
+import { Typography, TypographyProps } from '../Typography/Typography';
 
 export type InputLabelProps = {
   label: string;

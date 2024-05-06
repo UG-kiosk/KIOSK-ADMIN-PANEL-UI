@@ -1,5 +1,5 @@
-import { Styles } from '../theme/utils';
-import { Typography, TypographyProps } from './Typography';
+import { Styles } from '../../theme/utils';
+import { Typography, TypographyProps } from '../Typography/Typography';
 
 export type InputErrorProps = {
   errorMessage: string;

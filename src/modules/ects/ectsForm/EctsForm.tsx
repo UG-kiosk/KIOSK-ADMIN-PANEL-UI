@@ -1,10 +1,10 @@
 import React from 'react';
 import { useEctsForm } from './hooks/useEctsForm';
 import { Controller } from 'react-hook-form';
-import FormField from '../../../components/FormField';
+import FormField from '../../../components/FormField/FormField';
 import Button from '../../../components/Button/Button';
 import { createStyles } from '../../../theme/utils';
-import Dropdown from '../../../components/Dropdown';
+import Dropdown from '../../../components/Dropdown/Dropdown';
 import { Typography } from '@mui/material';
 import { Degree } from '../../../shared/constants/degree';
 

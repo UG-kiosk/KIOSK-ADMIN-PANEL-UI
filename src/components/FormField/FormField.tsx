@@ -1,10 +1,10 @@
 import { forwardRef, ReactNode } from 'react';
 
-import InputField, { InputFieldProps } from './Input';
-import InputError, { InputErrorProps } from './InputError';
-import InputLabel, { InputLabelProps } from './InputLabel';
-import { createStyles, Styles } from '../theme/utils';
-import { Prettify } from '../shared/types/Prettify';
+import InputField, { InputFieldProps } from '../Input/Input';
+import InputError, { InputErrorProps } from '../InputError/InputError';
+import InputLabel, { InputLabelProps } from '../InputLabel/InputLabel';
+import { createStyles, Styles } from '../../theme/utils';
+import { Prettify } from '../../shared/types/Prettify';
 
 type StyleKeys = 'container' | 'label' | 'input' | 'error';
 type ErrorProps = Pick<InputErrorProps, 'weight' | 'size' | 'dataTestId'>;
