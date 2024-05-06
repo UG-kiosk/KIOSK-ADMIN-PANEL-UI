@@ -15,9 +15,9 @@ function App() {
       <Button label="lorem ipsum" />
       <br /> <br /> <br /> <br /> <br /> <br />
       <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Dropdown value="lorem">
+        <Dropdown>
           <Dropdown.Trigger>
-            <Dropdown.Value />
+            <Dropdown.Value placeholder="Select" />
           </Dropdown.Trigger>
           <Dropdown.Content>
             {['lorem', 'ipsum', 'dolor', 'ehehehe', 'looooooooooorem'].map(degree => (

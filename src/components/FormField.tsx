@@ -73,7 +73,7 @@ const textFieldStyles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     gap: 6,
-    height: 40,
+    height: 65,
   },
 });
 

@@ -17,15 +17,7 @@ export type InputLabelProps = {
  * @param size optional FontSize, used to determine font size of typography component
  * @param weight optional FontWeight, used to determine font weight of typography component.
  */
-const InputLabel = ({
-  label,
-  styles,
-  dataTestId,
-  isRequired = false,
-  lineHeight = 0,
-  size = 'md',
-  weight = 'bold',
-}: InputLabelProps) => (
+const InputLabel = ({ label, styles, dataTestId, lineHeight = 0, size = 'md', weight = 'bold' }: InputLabelProps) => (
   <Typography
     size={size}
     weight={weight}
@@ -34,8 +26,6 @@ const InputLabel = ({
     dataTestId={dataTestId}
   >
     {label}
-    {/* WHEN JUSTYNA DECIDE WHICH STYLES ADD HERE ICON */}
-    {/* {isRequired ?  : null} */}
   </Typography>
 );
 

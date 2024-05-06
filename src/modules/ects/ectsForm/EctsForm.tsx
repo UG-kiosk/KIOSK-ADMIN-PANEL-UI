@@ -21,7 +21,7 @@ const EctsForm = () => {
             name={name}
             render={({ field, fieldState: { error } }) =>
               name === 'degree' ? (
-                <Dropdown value={Degree.BACHELOR} onValueChange={event => field.onChange(event)}>
+                <Dropdown defaultValue={Degree.BACHELOR} onValueChange={event => field.onChange(event)}>
                   <Dropdown.Trigger>
                     <Dropdown.Value />
                   </Dropdown.Trigger>
@@ -48,7 +48,6 @@ const EctsForm = () => {
                   name={field.name}
                   ref={field.ref}
                   inputType="base"
-                  styles={{ container: { height: 42 } }}
                 />
               )
             }
@@ -64,6 +63,7 @@ export default EctsForm;
 
 const userInformationFormStyles = createStyles({
   formContainer: {
+    maxWidth: 400,
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
@@ -83,10 +83,10 @@ const userInformationFormStyles = createStyles({
   submitButton: ({ typography }) => ({
     width: 'auto',
     fontSize: typography.fontSize.lg,
-    fontWeight: typography.fontWeight['600'],
+    fontWeight: typography.fontWeight.medium,
   }),
   legend: ({ colors }) => ({
     fontStyle: 'italic',
-    color: colors.grayGranite,
+    color: colors.lightGray,
   }),
 });
