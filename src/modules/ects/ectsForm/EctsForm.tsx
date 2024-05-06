@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEctsForm } from './hooks/useEctsForm';
 import { Controller } from 'react-hook-form';
 import FormField from '../../../components/FormField/FormField';
