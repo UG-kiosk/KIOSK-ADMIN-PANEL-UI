@@ -1,7 +1,6 @@
 const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL;
 
 console.log(GATEWAY_URL);
-console.log('giga dupa');
 
 const prodEnvironment = {
   KIOSK_API_URL: `${GATEWAY_URL}/kiosk-api`,

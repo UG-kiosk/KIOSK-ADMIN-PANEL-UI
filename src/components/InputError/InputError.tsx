@@ -1,5 +1,5 @@
-import { Styles } from '../theme/utils';
-import { Typography, TypographyProps } from './Typography';
+import { Styles } from '../../theme/utils';
+import { Typography, TypographyProps } from '../Typography/Typography';
 
 export type InputErrorProps = {
   errorMessage: string;
@@ -20,9 +20,12 @@ const InputError = ({ errorMessage, styles, dataTestId, size = 'sm', weight = 'b
   </Typography>
 );
 
-const inputErrorStyles: Styles = ({ colors, typography }) => ({
+const inputErrorStyles: Styles = ({ typography, colors }) => ({
+  lineHeight: 1,
+  fontSize: typography.fontSize.xs,
+  fontWeight: typography.fontWeight.normal,
   color: colors.error,
-  lineHeight: typography.fontSize.sm,
+  padding: '0px 15px',
 });
 
 export default InputError;
