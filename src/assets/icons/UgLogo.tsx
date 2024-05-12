@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconType } from '../../shared/types/icons';
 
 const UgLogo = ({ size = 50, styles }: IconType) => (
