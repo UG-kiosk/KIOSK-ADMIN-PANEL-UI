@@ -1,30 +1,42 @@
-import Button from './components/Button/Button';
-import Dropdown from './components/Dropdown/Dropdown';
-import { Typography } from './components/Typography/Typography';
+import Tile from './components/Tile/Tile';
+import { EctsSubject } from './modules/ects/ectsForm/types/ectsSubject';
+const exampleEctsSubject: EctsSubject = {
+  subject: 'Mathematics',
+  lectureHours: 30,
+  recitationHours: 10,
+  labsHours: 20,
+  pass: 'Passing grade',
+  ects: 5,
+  major: 'Computer Science',
+  degree: 'Bachelor',
+  term: 1,
+  year: '2022',
+  recruitmentYear: [2021, 2022],
+  speciality: 'Advanced Calculus',
+};
+
+const verylongName: EctsSubject = {
+  subject:
+    'MathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematics',
+  lectureHours: 30,
+  recitationHours: 10,
+  labsHours: 20,
+  pass: 'Passing grade',
+  ects: 5,
+  major: 'Computer Science',
+  degree: 'Bachelor',
+  term: 1,
+  year: '2022',
+  recruitmentYear: [2021, 2022],
+  speciality: 'Advanced Calculus',
+};
 
 function App() {
   return (
-    <>
-      <Button label="lorem ipsum" variant="secondary" />
-      <Button label="lorem ipsum" variant="accept" />
-      <Button label="lorem ipsum" variant="cancel" />
-      <Button label="lorem ipsum" />
-      <br /> <br /> <br /> <br /> <br /> <br />
-      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Dropdown>
-          <Dropdown.Trigger>
-            <Dropdown.Value placeholder="Select" />
-          </Dropdown.Trigger>
-          <Dropdown.Content>
-            {['lorem', 'ipsum', 'dolor', 'ehehehe', 'looooooooooorem'].map(degree => (
-              <Dropdown.Item value={degree} key={degree}>
-                <Typography>{degree}</Typography>
-              </Dropdown.Item>
-            ))}
-          </Dropdown.Content>
-        </Dropdown>
-      </div>
-    </>
+    <div>
+      <Tile object={exampleEctsSubject} arrayOfKey={['subject', 'term']} />
+      <Tile object={verylongName} arrayOfKey={['subject', 'term']} />
+    </div>
   );
 }
 export default App;

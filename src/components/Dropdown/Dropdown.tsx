@@ -2,7 +2,7 @@ import * as ScrollArea from '@radix-ui/react-scroll-area';
 import * as RadixSelect from '@radix-ui/react-select';
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, useState } from 'react';
 import { Styles, createStyles } from '../../theme/utils';
-import Angledown from '../../assets/Angledown';
+import Angledown from '../../assets/icons/Angledown';
 
 export type DropdownOption = {
   value: string;
