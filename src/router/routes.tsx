@@ -1,10 +1,18 @@
-import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Outlet, Route } from 'react-router-dom';
 import { paths } from './paths';
 import App from '../App';
+import SideBar from '../components/Sidebar/Sidebar';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route
+      element={
+        <main css={{ display: 'flex', height: '100%' }}>
+          <SideBar />
+          <Outlet />
+        </main>
+      }
+    >
       <Route path={paths.root} element={<App />}></Route>
       <Route
         path={paths.majors}

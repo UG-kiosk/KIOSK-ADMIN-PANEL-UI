@@ -1,7 +1,5 @@
 const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL;
 
-console.log(GATEWAY_URL);
-
 const prodEnvironment = {
   KIOSK_API_URL: `${GATEWAY_URL}/kiosk-api`,
   SCRAPERS_API_URL: `${GATEWAY_URL}/scrapers-api`, // to be deleted

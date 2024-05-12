@@ -15,7 +15,8 @@ type Color =
   | 'softGreen'
   | 'darkenedGreen'
   | 'softRed'
-  | 'darkenedRed';
+  | 'darkenedRed'
+  | 'textGray';
 
 export type Colors = Record<Color, string>;
 
@@ -32,6 +33,7 @@ export const colors: Colors = {
   primaryBlue: '#0044B0',
   darkBlue: '#05337E',
   lightGray: '#D2D1D1',
+  textGray: '#8C919E',
   whiteSmoke: '#f5f5f5',
   softGreen: '#6C936E',
   darkenedGreen: '#5a7c5b',
