@@ -33,7 +33,7 @@ const verylongName: EctsSubject = {
 
 function App() {
   return (
-    <div>
+    <div css={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <Tile object={exampleEctsSubject} arrayOfKey={['subject', 'term']} />
       <Tile object={verylongName} arrayOfKey={['subject', 'term']} />
     </div>
