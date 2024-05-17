@@ -28,6 +28,13 @@ const router = createBrowserRouter(
           return { Component: ects.default };
         }}
       ></Route>
+      <Route
+        path={paths.news}
+        lazy={async () => {
+          const news = await import('../modules/news/newsForm/NewsForm');
+          return { Component: news.default };
+        }}
+      ></Route>
     </Route>,
   ),
 );
