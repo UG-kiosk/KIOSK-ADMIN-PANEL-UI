@@ -5,24 +5,26 @@ import { useForm } from 'react-hook-form';
 // import { useStaffCall } from './useStaffCall';
 
 const academicSchema = z.object({
-  name: z.string().trim().min(1, 'Name cannot be empty'),
+  name: z.string().trim().min(6, 'Name must be at least 6 characters long').max(50, 'Name is too long'),
   link: z
     .string()
     .url()
     .min(1, 'Link cannot be empty')
+    .max(100, 'Link is too long')
     .regex(/mfi\.ug\.edu\.pl/, 'Link must contain mfi.ug.edu.pl'),
   email: z
     .string()
     .email()
     .min(1, 'Email cannot be empty')
+    .max(50, 'Email is too long')
     .regex(/@ug\.edu\.pl$/, 'Email must contain @ug.edu.pl'),
   tutorial: z.string(),
   posts: z.array(
     z.object({
-      position: z.string().min(1, 'Position cannot be empty'),
+      position: z.string().min(3, 'Position  must be at least 5 characters long').max(50, 'Position name is too long'),
       faculty: z.array(
         z.object({
-          name: z.string().min(1, 'Faculty cannot be empty'),
+          name: z.string().min(5, 'Faculty must be at least 5 characters long').max(50, 'Faculty name is too long'),
         }),
       ),
     }),
@@ -76,7 +78,15 @@ const defaultAcademicValues: academicSchema = {
   link: '',
   email: '',
   tutorial: '',
-  posts: [],
+  posts: [{ position: '', faculty: [{ name: '' }] }],
+};
+
+export type FormValues = {
+  link: string;
+  name: string;
+  email: string;
+  tutorial: string;
+  posts: { position: string; faculty: { name: string }[] }[];
 };
 
 export const useStaffForm = () => {
@@ -85,7 +95,7 @@ export const useStaffForm = () => {
     handleSubmit,
     formState: { errors },
     getValues,
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: defaultAcademicValues,
     resolver: zodResolver(academicSchema),
     mode: 'onBlur',

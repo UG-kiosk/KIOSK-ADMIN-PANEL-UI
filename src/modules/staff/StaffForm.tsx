@@ -3,13 +3,14 @@ import FormField from '../../components/FormField/FormField';
 import Button from '../../components/Button/Button';
 import PostFields from './PostFields';
 import { useStaffForm } from './hooks/useStaffForm';
+import { formStyles } from '../../styles/formStyles';
 
 const StaffForm = () => {
   const { control, formFields, handleSubmit, onSubmit } = useStaffForm();
   return (
-    <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
+    <section css={formStyles.section}>
+      <form css={formStyles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <fieldset css={formStyles.formFields}>
           {formFields.map(({ name, label, isRequired, placeholder, type }) => (
             <Controller
               key={name}
@@ -47,36 +48,3 @@ const StaffForm = () => {
 };
 
 export default StaffForm;
-
-// const userInformationFormStyles = createStyles({
-//   section: {
-//     width: '100%',
-//   },
-//   formContainer: {
-//     margin: 'auto',
-//     maxWidth: 400,
-//     width: '100%',
-//     display: 'flex',
-//     flexDirection: 'column',
-//     gap: 20,
-//   },
-//   formFields: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     gap: 20,
-//   },
-//   actionContainer: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     gap: 25,
-//   },
-//   submitButton: ({ typography }) => ({
-//     width: 'auto',
-//     fontSize: typography.fontSize.lg,
-//     fontWeight: typography.fontWeight.medium,
-//   }),
-//   legend: ({ colors }) => ({
-//     fontStyle: 'italic',
-//     color: colors.lightGray,
-//   }),
-// });
