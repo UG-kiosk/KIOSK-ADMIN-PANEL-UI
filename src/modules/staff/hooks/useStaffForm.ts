@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from '../../../shared/types/FormField';
 import { useForm } from 'react-hook-form';
-// import { useStaffCall } from './useStaffCall';
+import { useStaffCall } from './useStaffCall';
 
 const academicSchema = z.object({
   name: z.string().trim().min(6, 'Name must be at least 6 characters long').max(50, 'Name is too long'),
@@ -21,10 +21,18 @@ const academicSchema = z.object({
   tutorial: z.string(),
   posts: z.array(
     z.object({
-      position: z.string().min(3, 'Position  must be at least 5 characters long').max(50, 'Position name is too long'),
+      position: z
+        .string()
+        .trim()
+        .min(3, 'Position  must be at least 5 characters long')
+        .max(50, 'Position name is too long'),
       faculty: z.array(
         z.object({
-          name: z.string().min(5, 'Faculty must be at least 5 characters long').max(50, 'Faculty name is too long'),
+          name: z
+            .string()
+            .trim()
+            .min(5, 'Faculty must be at least 5 characters long')
+            .max(50, 'Faculty name is too long'),
         }),
       ),
     }),
@@ -100,11 +108,25 @@ export const useStaffForm = () => {
     resolver: zodResolver(academicSchema),
     mode: 'onBlur',
   });
-  //   const { addStaffMutation } = useStaffCall();
+  const { addStaffMutation } = useStaffCall();
   const onSubmit = (data: academicSchema) => {
-    // addStaffMutation(data);
-    // eslint-disable-next-line no-console
-    console.log(data);
+    const { name, email, link, tutorial, posts } = data;
+
+    const mappedPosts = posts.map(({ position, faculty }) => ({
+      position,
+      faculty: faculty.map(({ name }) => name),
+    }));
+
+    const dto = {
+      name,
+      email,
+      link,
+      content: {
+        tutorial,
+        posts: mappedPosts,
+      },
+    };
+    addStaffMutation(dto);
   };
 
   return { control, formFields, handleSubmit, onSubmit, errors, getValues };

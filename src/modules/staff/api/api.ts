@@ -1,7 +1,7 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
-// import { Academic } from '../types/Academic';
+import { Academic } from '../types/Academic';
 
-export const addStaffCall = async (body: unknown): Promise<unknown> => {
+export const addStaffCall = async (body: Academic): Promise<Academic> => {
   const addStaffUrl = new URL('http://localhost:5202/staff');
 
   const response = await fetch(addStaffUrl, {
@@ -9,7 +9,7 @@ export const addStaffCall = async (body: unknown): Promise<unknown> => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify([body]),
   });
 
   if (!response.ok) {
@@ -20,14 +20,3 @@ export const addStaffCall = async (body: unknown): Promise<unknown> => {
 
   return data;
 };
-
-// // instead use axios
-// import axios from 'axios';
-
-// export const addEctsSubjectCall = async (body: Academic): Promise<Academic> => {
-//   const addStaffUrl = 'http://localhost:5202/staff';
-
-//   const response = await axios.post(addStaffUrl, body);
-
-//   return response.data;
-// };
