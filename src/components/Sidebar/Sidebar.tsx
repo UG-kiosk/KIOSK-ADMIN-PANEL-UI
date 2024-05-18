@@ -8,12 +8,18 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '../../router/paths';
 import UgLogo from '../../assets/icons/UgLogo';
 import { Typography } from '../Typography/Typography';
+import StaffIcon from '../../assets/icons/StaffIcon';
 
 const modules = [
   {
     text: 'Ects',
     icon: <EctsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.ects,
+  },
+  {
+    text: 'Staff',
+    icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.staff,
   },
 ];
 
