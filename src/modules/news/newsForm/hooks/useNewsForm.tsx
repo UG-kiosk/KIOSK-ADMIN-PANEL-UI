@@ -8,7 +8,11 @@ const newsSchema = z.object({
   shortBody: z.string().min(1, 'Short body cannot be empty'),
   body: z.string().min(1, 'Body cannot be empty'),
   leadingPhoto: z.string().min(1, 'Leading photo cannot be empty'),
-  photos: z.string(),
+  photos: z.array(
+    z.object({
+      photo: z.string().url(),
+    }),
+  ),
   link: z.string().url().or(z.literal('')),
   source: z.string(),
   category: z.string(),
@@ -17,8 +21,9 @@ const newsSchema = z.object({
 type newsSchema = z.infer<typeof newsSchema>;
 
 type FieldName = keyof newsSchema;
+type ExcludedPhotos = Exclude<FieldName, 'photos'>;
 
-const formFields: FormField<FieldName>[] = [
+const formFields: FormField<ExcludedPhotos>[] = [
   {
     name: 'title',
     label: 'Title',
@@ -38,20 +43,6 @@ const formFields: FormField<FieldName>[] = [
     label: 'Body',
     isRequired: true,
     placeholder: 'Enter news body',
-    type: 'text',
-  },
-  {
-    name: 'leadingPhoto',
-    label: 'Leading photo',
-    isRequired: true,
-    placeholder: 'Enter news leading photo',
-    type: 'text',
-  },
-  {
-    name: 'photos',
-    label: 'Photos',
-    isRequired: true,
-    placeholder: 'Enter news photos',
     type: 'text',
   },
   {
@@ -75,6 +66,13 @@ const formFields: FormField<FieldName>[] = [
     placeholder: 'Enter news category',
     type: 'text',
   },
+  {
+    name: 'leadingPhoto',
+    label: 'Leading photo',
+    isRequired: true,
+    placeholder: 'Enter news leading photo url',
+    type: 'text',
+  },
 ];
 
 const defaultNewsValues: newsSchema = {
@@ -82,7 +80,7 @@ const defaultNewsValues: newsSchema = {
   shortBody: '',
   body: '',
   leadingPhoto: '',
-  photos: '',
+  photos: [],
   link: '',
   source: 'MFI',
   category: 'NEWS',
