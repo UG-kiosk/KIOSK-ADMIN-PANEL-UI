@@ -35,6 +35,13 @@ const router = createBrowserRouter(
           return { Component: news.default };
         }}
       ></Route>
+      <Route
+        path={paths.staff}
+        lazy={async () => {
+          const staff = await import('../modules/staff/StaffForm');
+          return { Component: staff.default };
+        }}
+      ></Route>
     </Route>,
   ),
 );
