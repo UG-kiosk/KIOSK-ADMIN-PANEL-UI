@@ -2,12 +2,12 @@ import { useNewsForm } from './hooks/useNewsForm';
 import { Controller, useFieldArray } from 'react-hook-form';
 import FormField from '../../../components/FormField/FormField';
 import Button from '../../../components/Button/Button';
-import { createStyles } from '../../../theme/utils';
 import Dropdown from '../../../components/Dropdown/Dropdown';
 import { NewsSource, NewsCategory } from './types/news';
 import { Typography } from '../../../components/Typography/Typography';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { formStyles } from '../../../styles/formStyles';
 
 const NewsForm = () => {
   const { control, formFields, handleSubmit, onSubmit } = useNewsForm();
@@ -21,9 +21,9 @@ const NewsForm = () => {
   });
 
   return (
-    <section css={newsFormStyles.section}>
-      <form css={newsFormStyles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <fieldset css={newsFormStyles.formFields}>
+    <section css={formStyles.section}>
+      <form css={formStyles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <fieldset css={formStyles.formFields}>
           {formFields.map(({ name, label, isRequired, placeholder, type }) => (
             <Controller
               key={name}
@@ -47,30 +47,30 @@ const NewsForm = () => {
                     </Dropdown.Content>
                   </Dropdown>
                 ) : name === 'body' ? (
-                  <CKEditor
-                    editor={ClassicEditor}
-                    onChange={(event, editor) => {
-                      const data = editor.getData();
-                      field.onChange(data);
-                    }}
-                    config={{
-                      placeholder: 'News body',
-                      toolbar: [
-                        'heading',
-                        'bold',
-                        'italic',
-                        'bulletedList',
-                        'numberedList',
-                        'blockQuote',
-                        'insertTable',
-                        'undo',
-                        'redo',
-                      ],
-                    }}
-                    onReady={editor => {
-                      editor.ui.view.editable.element!.style.minHeight = '250px';
-                    }}
-                  />
+                  <div style={{ maxWidth: 800 }}>
+                    <CKEditor
+                      editor={ClassicEditor}
+                      onChange={(event, editor) => {
+                        const data = editor.getData();
+                        field.onChange(data);
+                      }}
+                      data={field.value}
+                      config={{
+                        placeholder: 'News body',
+                        toolbar: [
+                          'heading',
+                          'bold',
+                          'italic',
+                          'bulletedList',
+                          'numberedList',
+                          'blockQuote',
+                          'insertTable',
+                          'undo',
+                          'redo',
+                        ],
+                      }}
+                    />
+                  </div>
                 ) : (
                   <FormField
                     isError={!!error}
@@ -92,8 +92,8 @@ const NewsForm = () => {
             />
           ))}
           {photosFields.map((_, photoIndex) => (
-            <div key={photoIndex} css={newsFormStyles.photosForm}>
-              <div css={newsFormStyles.photosForm.input}>
+            <div key={photoIndex} css={formStyles.nestedFormField}>
+              <div>
                 <Controller
                   control={control}
                   name={`photos.${photoIndex}.photo`}
@@ -116,7 +116,7 @@ const NewsForm = () => {
                 type="button"
                 variant="secondary"
                 onClick={() => remove(photoIndex)}
-                css={newsFormStyles.photosForm.button}
+                css={formStyles.removeButton}
               />
             </div>
           ))}
@@ -130,50 +130,3 @@ const NewsForm = () => {
 };
 
 export default NewsForm;
-
-const newsFormStyles = createStyles({
-  photosForm: {
-    display: 'flex',
-    flexFlow: 'row',
-    justifyContent: 'space-between',
-    button: {
-      height: 10,
-      marginTop: 25,
-    },
-    input: {
-      width: '90%',
-    },
-  },
-  section: {
-    width: '100%',
-  },
-  formContainer: {
-    margin: 'auto',
-    maxWidth: 700,
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
-    marginTop: 40,
-    marginBottom: 40,
-  },
-  formFields: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
-  },
-  actionContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 25,
-  },
-  submitButton: ({ typography }) => ({
-    width: 'auto',
-    fontSize: typography.fontSize.lg,
-    fontWeight: typography.fontWeight.medium,
-  }),
-  legend: ({ colors }) => ({
-    fontStyle: 'italic',
-    color: colors.lightGray,
-  }),
-});

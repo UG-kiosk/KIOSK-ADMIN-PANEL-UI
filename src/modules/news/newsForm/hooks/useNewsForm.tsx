@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from '../../../../shared/types/FormField';
+import { useNewsCall } from './useNewsCall';
+import { NewsCategory, NewsRequest, NewsSource } from '../types/news';
 
 const newsSchema = z.object({
   title: z.string().min(1, 'Title cannot be empty'),
@@ -13,9 +15,20 @@ const newsSchema = z.object({
       photo: z.string().url(),
     }),
   ),
-  link: z.string().url().or(z.literal('')),
-  source: z.string(),
-  category: z.string(),
+  link: z
+    .string()
+    .url()
+    .refine(
+      value => {
+        return value.includes('mfi.ug.edu.pl') || value.includes('inf.ug.edu.pl');
+      },
+      {
+        message: 'Link must contain either "mfi.ug.edu.pl" or "inf.ug.edu.pl"',
+      },
+    )
+    .or(z.literal('')),
+  source: z.enum([NewsSource.INF, NewsSource.MFI]),
+  category: z.enum([NewsCategory.ARCHIVE, NewsCategory.NEWS, NewsCategory.STUDENTS]),
 });
 
 type newsSchema = z.infer<typeof newsSchema>;
@@ -57,14 +70,14 @@ const formFields: FormField<ExcludedPhotos>[] = [
     label: 'Source',
     isRequired: true,
     placeholder: 'Enter news source',
-    type: 'text',
+    type: 'string',
   },
   {
     name: 'category',
     label: 'Category',
     isRequired: true,
     placeholder: 'Enter news category',
-    type: 'text',
+    type: 'string',
   },
   {
     name: 'leadingPhoto',
@@ -82,8 +95,8 @@ const defaultNewsValues: newsSchema = {
   leadingPhoto: '',
   photos: [],
   link: '',
-  source: 'MFI',
-  category: 'NEWS',
+  source: NewsSource.INF,
+  category: NewsCategory.NEWS,
 };
 
 export const useNewsForm = () => {
@@ -96,9 +109,27 @@ export const useNewsForm = () => {
     resolver: zodResolver(newsSchema),
     mode: 'onBlur',
   });
+  const { addNewsMutation } = useNewsCall();
   const onSubmit = (data: newsSchema) => {
-    //zrob cos
-    console.log(data);
+    const { title, shortBody, body, leadingPhoto, photos, link, source, category } = data;
+    const photosArray = photos.map(photo => photo.photo);
+    const shortBodyEllipsis = shortBody + '...';
+    const datetime = new Date();
+    const newsData: NewsRequest = {
+      leadingPhoto,
+      photos: photosArray,
+      link,
+      newsDetails: {
+        title,
+        shortBody: shortBodyEllipsis,
+        body,
+      },
+      source,
+      category,
+      datetime,
+      sourceLanguage: 'Pl',
+    };
+    addNewsMutation(newsData);
   };
   return { control, formFields, handleSubmit, onSubmit, errors };
 };
