@@ -50,7 +50,7 @@ const NewsForm = () => {
                   <div style={{ maxWidth: 800 }}>
                     <CKEditor
                       editor={ClassicEditor}
-                      onChange={(event, editor) => {
+                      onChange={(_, editor) => {
                         const data = editor.getData();
                         field.onChange(data);
                       }}
