@@ -22,7 +22,6 @@ const SideBar = () => {
   return (
     <aside css={sideBarStyles.sideBar}>
       <header>
-        {/* <img src={UGLogo} onClick={() => navigate(paths.root)} /> */}
         <UgLogo size={100} />
       </header>
 
@@ -62,7 +61,7 @@ const sideBarStyles = createStyles({
   sideBar: ({ colors }) => ({
     minWidth: 320,
     minHeight: '100vh',
-    backgroundColor: colors.whiteSmoke,
+    backgroundColor: colors.white,
     padding: '40px 20px',
     display: 'flex',
     flexDirection: 'column',

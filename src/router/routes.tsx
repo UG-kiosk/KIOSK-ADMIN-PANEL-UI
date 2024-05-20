@@ -2,15 +2,23 @@ import { createBrowserRouter, createRoutesFromElements, Outlet, Route } from 're
 import { paths } from './paths';
 import App from '../App';
 import SideBar from '../components/Sidebar/Sidebar';
+import { SearchParamsProvider } from '../providers/searchParamsProvider';
+import { createStyles } from '../theme/utils';
+
+const mainStyles = createStyles({
+  main: ({ colors }) => ({ display: 'flex', height: '100%', backgroundColor: colors.whiteSmoke }),
+});
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
       element={
-        <main css={{ display: 'flex', height: '100%' }}>
-          <SideBar />
-          <Outlet />
-        </main>
+        <SearchParamsProvider>
+          <main css={mainStyles.main}>
+            <SideBar />
+            <Outlet />
+          </main>
+        </SearchParamsProvider>
       }
     >
       <Route path={paths.root} element={<App />}></Route>
@@ -24,7 +32,7 @@ const router = createBrowserRouter(
       <Route
         path={paths.ects}
         lazy={async () => {
-          const ects = await import('../modules/ects/ectsForm/EctsForm');
+          const ects = await import('../modules/ects/ectsMainPage/EctsMainPage');
           return { Component: ects.default };
         }}
       ></Route>

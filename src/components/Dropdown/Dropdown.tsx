@@ -32,7 +32,7 @@ const DropdownTrigger = forwardRef<ElementRef<typeof RadixSelect.Trigger>, Trigg
     <RadixSelect.Trigger ref={ref} css={[dropdownStyles.dropdownTrigger, styles]} data-testid={dataTestId} {...props}>
       {children}
       <RadixSelect.Icon asChild className="expand-icon">
-        <Angledown />
+        <Angledown size={30} />
       </RadixSelect.Icon>
     </RadixSelect.Trigger>
   ),

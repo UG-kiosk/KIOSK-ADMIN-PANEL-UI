@@ -7,17 +7,17 @@ type TileProps<T> = {
   object: T;
   arrayOfKey: (keyof T)[];
   styles?: Styles;
+  ellipsAfter?: number;
 };
 
-const Tile = <T,>({ object, arrayOfKey, styles }: TileProps<T>) => {
+const Tile = <T,>({ object, arrayOfKey, styles, ellipsAfter = 40 }: TileProps<T>) => {
   return (
     <div css={[tileStyles.tile, styles]}>
       <section css={tileStyles.section}>
         {arrayOfKey.map(key => (
-          <Typography
-            key={key.toString()}
-            weight="bold"
-          >{`${key.toString()}: ${truncateWithEllipsis(`${object[key]}`, 40)}`}</Typography>
+          <Typography key={key.toString()} weight="bold" styles={{ whiteSpace: 'nowrap' }}>
+            {object[key] && `${key.toString()}: ${truncateWithEllipsis(`${object[key]}`, ellipsAfter)}`}
+          </Typography>
         ))}
       </section>
       <div css={tileStyles.buttons}>

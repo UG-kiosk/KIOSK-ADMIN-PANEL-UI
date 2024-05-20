@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { addEctsSubjectCall } from './api';
-import { EctsSubject } from '../types/ectsSubject';
+import { EctsSubject } from '../../types/ectsSubject';
 
 export const useEctsCall = () => {
   const { mutateAsync: addEctsSubjectMutation } = useMutation({
