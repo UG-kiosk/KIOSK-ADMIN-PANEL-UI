@@ -6,11 +6,13 @@ export const formStyles = createStyles({
   },
   formContainer: {
     margin: 'auto',
-    maxWidth: 400,
+    maxWidth: 700,
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
+    marginTop: 30,
+    marginBottom: 30,
   },
   formFields: {
     display: 'flex',
