@@ -2,13 +2,13 @@ import { createStyles } from '../../theme/utils';
 import * as Accordion from '@radix-ui/react-accordion';
 import Angledown from '../../assets/icons/Angledown';
 import ModuleIcon from '../../assets/icons/ModuleIcon';
-// import UGLogo from '../../assets/images/ug_logo.png';
 import EctsIcon from '../../assets/icons/EctsIcon';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../router/paths';
 import UgLogo from '../../assets/icons/UgLogo';
 import { Typography } from '../Typography/Typography';
 import StaffIcon from '../../assets/icons/StaffIcon';
+import MajorIcon from '../../assets/icons/MajorIcon';
 
 const modules = [
   {
@@ -20,6 +20,11 @@ const modules = [
     text: 'Staff',
     icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.staff,
+  },
+  {
+    text: 'Majors',
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.createMajor,
   },
 ];
 
