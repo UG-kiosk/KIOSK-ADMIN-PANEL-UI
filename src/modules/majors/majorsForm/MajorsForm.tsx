@@ -3,6 +3,8 @@ import FormField from '../../../components/FormField/FormField';
 import { useMajorsForm } from './hooks/useMajorsForm';
 import Button from '../../../components/Button/Button';
 import { formStyles } from '../../../styles/formStyles';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 
 export const MajorsForm = () => {
   const { control, formFields, handleSubmit, onSubmit } = useMajorsForm();
@@ -16,24 +18,51 @@ export const MajorsForm = () => {
               key={name}
               control={control}
               name={name}
-              render={({ field, fieldState: { error } }) => (
-                <FormField
-                  isError={!!error}
-                  inputProps={{
-                    ...field,
-                    placeholder,
-                    type: type,
-                    onChange: (event: React.ChangeEvent<HTMLInputElement>) => field.onChange(event.target.value),
-                    value: field.value as string, // Add this line to ensure the value is of type string
-                  }}
-                  isRequired={isRequired}
-                  errorMessage={error?.message}
-                  label={label}
-                  name={field.name}
-                  ref={field.ref}
-                  inputType="base"
-                />
-              )}
+              render={({ field, fieldState: { error } }) =>
+                name === 'content' ? (
+                  <div style={{ maxWidth: 800 }}>
+                    <CKEditor
+                      editor={ClassicEditor}
+                      onChange={(_, editor) => {
+                        const data = editor.getData();
+                        field.onChange(data);
+                      }}
+                      data={field.value}
+                      config={{
+                        placeholder: 'Major description content',
+                        toolbar: [
+                          'heading',
+                          'bold',
+                          'italic',
+                          'bulletedList',
+                          'numberedList',
+                          'blockQuote',
+                          'insertTable',
+                          'undo',
+                          'redo',
+                        ],
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <FormField
+                    isError={!!error}
+                    inputProps={{
+                      ...field,
+                      placeholder,
+                      type: type,
+                      onChange: (event: React.ChangeEvent<HTMLInputElement>) => field.onChange(event.target.value),
+                      value: field.value as string, // Add this line to ensure the value is of type string
+                    }}
+                    isRequired={isRequired}
+                    errorMessage={error?.message}
+                    label={label}
+                    name={field.name}
+                    ref={field.ref}
+                    inputType="base"
+                  />
+                )
+              }
             />
           ))}
           <Button label="Submit" type="submit" />
