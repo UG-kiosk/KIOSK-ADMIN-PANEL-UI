@@ -3,5 +3,6 @@ export const paths = {
   majorsScraper: '/majors/scraper',
   createMajor: '/majors/create',
   ects: 'ects',
+  news: 'news',
   staff: 'staff',
 };
