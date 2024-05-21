@@ -1,6 +1,7 @@
 export const paths = {
   root: '/',
-  majors: '/majors/scraper',
+  majorsScraper: '/majors/scraper',
+  createMajor: '/majors/create',
   ects: 'ects',
   news: 'news',
   staff: 'staff',
