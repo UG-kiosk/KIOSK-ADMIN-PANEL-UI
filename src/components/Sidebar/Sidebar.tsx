@@ -34,7 +34,6 @@ const SideBar = () => {
   return (
     <aside css={sideBarStyles.sideBar}>
       <header>
-        {/* <img src={UGLogo} onClick={() => navigate(paths.root)} /> */}
         <UgLogo size={100} />
       </header>
 
@@ -105,10 +104,3 @@ const sideBarStyles = createStyles({
     },
   }),
 });
-
-// const allLabels = [
-//   {
-//     icon: Angledown,
-//     text: 'Strzalka w dol',
-//   },
-// ];
