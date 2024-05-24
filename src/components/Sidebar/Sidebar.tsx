@@ -2,7 +2,6 @@ import { createStyles } from '../../theme/utils';
 import * as Accordion from '@radix-ui/react-accordion';
 import Angledown from '../../assets/icons/Angledown';
 import ModuleIcon from '../../assets/icons/ModuleIcon';
-// import UGLogo from '../../assets/images/ug_logo.png';
 import EctsIcon from '../../assets/icons/EctsIcon';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../router/paths';
@@ -25,12 +24,12 @@ const modules = [
 
 const SideBar = () => {
   const navigate = useNavigate();
+
   return (
     <aside css={sideBarStyles.sideBar}>
       <header>
-        <UgLogo size={100} />
+        <UgLogo size={90} />
       </header>
-
       <section>
         <Accordion.Root type="single" defaultValue="item-1" collapsible>
           <Accordion.Item value="item-1">
@@ -67,7 +66,7 @@ const sideBarStyles = createStyles({
   sideBar: ({ colors }) => ({
     minWidth: 320,
     minHeight: '100vh',
-    backgroundColor: colors.whiteSmoke,
+    backgroundColor: colors.white,
     padding: '40px 20px',
     display: 'flex',
     flexDirection: 'column',
