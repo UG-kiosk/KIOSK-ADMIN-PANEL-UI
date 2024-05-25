@@ -1,6 +1,6 @@
 import { Typography } from '../Typography/Typography';
 import { createStyles } from '../../theme/utils';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const Timer = () => {
   const translateDay = (day: string) => {
@@ -16,7 +16,7 @@ const Timer = () => {
     return days[day.toLowerCase()];
   };
 
-  const getFormattedTime = () => {
+  const getFormattedTime = useCallback(() => {
     const date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
@@ -30,7 +30,7 @@ const Timer = () => {
     const [weekday, day, time] = formattedDate.split(', ');
     const translatedWeekday = translateDay(weekday);
     return `${translatedWeekday}, ${day} ${time}`;
-  };
+  }, []);
 
   const [ctime, setTime] = useState(getFormattedTime());
 
@@ -39,7 +39,7 @@ const Timer = () => {
       setTime(getFormattedTime());
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [getFormattedTime]);
 
   return (
     <div css={timerStyles.timer}>

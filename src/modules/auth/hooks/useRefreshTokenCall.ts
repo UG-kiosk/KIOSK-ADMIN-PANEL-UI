@@ -22,7 +22,7 @@ export const useRefreshTokenCall = () => {
   });
 
   const ensureValidAccessToken = async () => {
-    let token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     if (!token) {
       await refreshTokenMutation();
     } else if (checkIfTokenExpired(token)) {
