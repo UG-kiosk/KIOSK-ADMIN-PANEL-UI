@@ -1,6 +1,7 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
 import { getAuthHeader } from '../../../shared/utils/getAuthHeader';
 import { AdminLogin } from '../types/AdminLogin';
+import { Admin } from '../types/Admin';
 
 export const login = async (body: AdminLogin): Promise<{ username: string; accessToken: string }> => {
   const authApiUrl = 'http://localhost:430/api/login';
