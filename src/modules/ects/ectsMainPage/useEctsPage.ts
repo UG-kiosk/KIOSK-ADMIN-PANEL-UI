@@ -4,8 +4,10 @@ import { fetchEctsSubject } from '../ectsForm/api/api';
 import { isDegree, isSort } from './helpers/sortHelpers';
 import { Degree } from '../../../shared/constants/degree';
 import { DEGREE_PARAM_NAME, FILTER_PARAM_NAME, PAGE_PARAM_NAME, SORT_PARAM_NAME } from './components/useSearch';
+// import { useRefreshTokenCall } from '../../auth/hooks/useRefreshTokenCall';
 
 const useMainEctsPage = () => {
+  // const { ensureValidAccessToken } = useRefreshTokenCall();
   const { handleGetSearchParam } = useSearchParamsContext();
   const pageParam = Number(handleGetSearchParam(PAGE_PARAM_NAME)) ?? 1;
   const filterParam = handleGetSearchParam(FILTER_PARAM_NAME) ?? null;
@@ -14,14 +16,16 @@ const useMainEctsPage = () => {
 
   const { data: ectsSubjectData } = useQuery({
     queryKey: ['browseModels', pageParam, filterParam, sortParam, degreeParam],
-    queryFn: async () =>
-      fetchEctsSubject({
+    queryFn: async () => {
+      // await ensureValidAccessToken();
+      return await fetchEctsSubject({
         itemsPerPage: 20,
         page: pageParam,
         filterBy: filterParam,
         sortDirection: sortParam,
         degree: degreeParam,
-      }),
+      });
+    },
     select: data => ({
       ectsSubjects: data.ectsSubjects,
       pagination: data.pagination,

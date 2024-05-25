@@ -1,4 +1,5 @@
 import { HTTP_METHOD } from '../../../../shared/constants/httpMethods';
+// import { getAuthHeader } from '../../../../shared/utils/getAuthHeader';
 import { EctsResponse } from '../../types/ectsResponse';
 import { EctsSubject } from '../../types/ectsSubject';
 import { PaginationRequest } from '../../types/pagination';
@@ -38,18 +39,18 @@ export const prepareEctsSubjectsApiUrl = (
 
 export const fetchEctsSubject = async (pagination: PaginationRequest): Promise<EctsResponse> => {
   const getAllSubjecstUrl = new URL('http://localhost:5202/kiosk-api/ects-subjects');
-
   const apiUrlWithParams = prepareEctsSubjectsApiUrl(getAllSubjecstUrl, pagination);
 
   const response = await fetch(apiUrlWithParams, {
     method: HTTP_METHOD.GET,
     headers: {
       'Content-Type': 'application/json',
+      // Authorization: getAuthHeader(),
     },
   });
 
   if (!response.ok) {
-    throw new Error(`[addEctsSubjectUrl]: ${response.status}. ${response.statusText}.`);
+    throw new Error(`[getEctsSubjectUrl]: ${response.status}. ${response.statusText}.`);
   }
 
   const data = await response.json();

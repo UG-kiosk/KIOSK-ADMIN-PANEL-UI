@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import router from './router/routes.tsx';
+import AuthContextProvider from './providers/context/AuthContextProvider.tsx';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './theme/theme.ts';
 import { MutationCache, QueryCache, QueryClient, QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
@@ -38,11 +39,13 @@ const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider theme={theme}>
-      <React.StrictMode>
-        <RouterProvider router={router} />
-      </React.StrictMode>
-    </ThemeProvider>
-  </QueryClientProvider>,
+  <AuthContextProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <React.StrictMode>
+          <RouterProvider router={router} />
+        </React.StrictMode>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </AuthContextProvider>,
 );
