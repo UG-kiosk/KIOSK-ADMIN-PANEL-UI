@@ -1,6 +1,4 @@
-import Cookies from 'js-cookie';
-
 export const getAuthHeader = () => {
-  const token = Cookies.get('accessToken');
+  const token = localStorage.getItem('token');
   return token ? `Bearer ${token}` : '';
 };

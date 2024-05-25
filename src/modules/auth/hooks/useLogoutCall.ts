@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../providers/context/AuthContextProvider';
 import { logout } from '../api/api';
 import { useMutation } from '@tanstack/react-query';
-import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 export const useLogoutCall = () => {
@@ -16,7 +15,7 @@ export const useLogoutCall = () => {
     onError: () => console.log('Something went wrong'),
     onSuccess: () => {
       setUser({ username: null, accessToken: null });
-      Cookies.remove('accessToken');
+      localStorage.removeItem('token');
       navigate('/auth/login');
     },
   });

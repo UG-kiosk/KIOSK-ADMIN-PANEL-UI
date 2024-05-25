@@ -1,6 +1,5 @@
 import { createContext, useState, ReactNode, useEffect } from 'react';
 import { AuthContextType } from './types/AuthContextType';
-import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -16,7 +15,7 @@ const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   });
 
   useEffect(() => {
-    const accessToken = Cookies.get('accessToken');
+    const accessToken = localStorage.getItem('token');
     if (accessToken) {
       const { username }: { username: string } = jwtDecode(accessToken);
       setUser({ username: username, accessToken: accessToken });

@@ -1,5 +1,5 @@
 import { HTTP_METHOD } from '../../../../shared/constants/httpMethods';
-import { getAuthHeader } from '../../../../shared/utils/getAuthHeader';
+// import { getAuthHeader } from '../../../../shared/utils/getAuthHeader';
 import { EctsResponse } from '../../types/ectsResponse';
 import { EctsSubject } from '../../types/ectsSubject';
 import { PaginationRequest } from '../../types/pagination';
@@ -45,6 +45,7 @@ export const fetchEctsSubject = async (pagination: PaginationRequest): Promise<E
     method: HTTP_METHOD.GET,
     headers: {
       'Content-Type': 'application/json',
+      // Authorization: getAuthHeader(),
     },
   });
 

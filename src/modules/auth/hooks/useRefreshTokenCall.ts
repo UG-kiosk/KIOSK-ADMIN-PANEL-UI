@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../providers/context/AuthContextProvider';
 import { jwtDecode } from 'jwt-decode';
 import { checkIfTokenExpired } from '../../../shared/utils/checkIfTokenExpired';
-import Cookies from 'js-cookie';
 
 export const useRefreshTokenCall = () => {
   const authContext = useContext(AuthContext);
@@ -18,15 +17,12 @@ export const useRefreshTokenCall = () => {
       console.log('refresh token success doing sth');
       const { username }: { username: string } = jwtDecode(data.accessToken);
       setUser({ username: username, accessToken: data.accessToken });
-      Cookies.set('accessToken', data.accessToken, {
-        secure: true,
-        sameSite: 'strict',
-      });
+      localStorage.setItem('token', data.accessToken);
     },
   });
 
   const ensureValidAccessToken = async () => {
-    let token = Cookies.get('accessToken');
+    let token = localStorage.getItem('token');
     if (!token) {
       await refreshTokenMutation();
     } else if (checkIfTokenExpired(token)) {
