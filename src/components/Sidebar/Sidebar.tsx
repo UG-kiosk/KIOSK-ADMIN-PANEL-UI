@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { paths } from '../../router/paths';
 import UgLogo from '../../assets/icons/UgLogo';
 import { Typography } from '../Typography/Typography';
+import NewsIcon from '../../assets/icons/NewsIcon';
 import StaffIcon from '../../assets/icons/StaffIcon';
+import MajorIcon from '../../assets/icons/MajorIcon';
 
 const modules = [
   {
@@ -16,9 +18,19 @@ const modules = [
     path: paths.ects,
   },
   {
+    text: 'News',
+    icon: <NewsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.news,
+  },
+  {
     text: 'Staff',
     icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.staff,
+  },
+  {
+    text: 'Majors',
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.createMajor,
   },
 ];
 

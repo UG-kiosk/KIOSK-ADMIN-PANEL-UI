@@ -42,10 +42,17 @@ const router = createBrowserRouter(
       >
         <Route path={paths.root} element={<App />}></Route>
         <Route
-          path={paths.majors}
+          path={paths.majorsScraper}
           lazy={async () => {
-            const ects = await import('../modules/majors/scraper/MajorsScraperPage');
-            return { Component: ects.MajorsScraperPage };
+            const pageModule = await import('../modules/majors/scraper/MajorsScraperPage');
+            return { Component: pageModule.MajorsScraperPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.createMajor}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsForm/MajorsForm');
+            return { Component: pageModule.MajorsForm };
           }}
         ></Route>
         <Route
@@ -53,6 +60,13 @@ const router = createBrowserRouter(
           lazy={async () => {
             const ects = await import('../modules/ects/ectsMainPage/EctsMainPage');
             return { Component: ects.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.news}
+          lazy={async () => {
+            const news = await import('../modules/news/newsForm/NewsForm');
+            return { Component: news.default };
           }}
         ></Route>
         <Route
