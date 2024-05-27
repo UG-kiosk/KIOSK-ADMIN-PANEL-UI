@@ -10,6 +10,7 @@ import { Typography } from '../Typography/Typography';
 import NewsIcon from '../../assets/icons/NewsIcon';
 import StaffIcon from '../../assets/icons/StaffIcon';
 import MajorIcon from '../../assets/icons/MajorIcon';
+import LessonsIcon from '../../assets/icons/LessonsIcon';
 
 const modules = [
   {
@@ -31,6 +32,11 @@ const modules = [
     text: 'Majors',
     icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.createMajor,
+  },
+  {
+    text: 'Lessons',
+    icon: <LessonsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.lessons,
   },
 ];
 

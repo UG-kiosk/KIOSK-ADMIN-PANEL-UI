@@ -7,4 +7,5 @@ export const paths = {
   ects: 'ects',
   news: 'news',
   staff: 'staff',
+  lessons: 'lessons',
 };
