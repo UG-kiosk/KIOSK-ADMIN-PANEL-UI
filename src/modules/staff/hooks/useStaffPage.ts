@@ -11,7 +11,7 @@ const useStaffPage = () => {
   const { data: staffListData } = useQuery({
     queryKey: ['staffList', pageParam, nameParam],
     queryFn: async () => {
-      let page = pageParam === 0 ? 1 : pageParam;
+      const page = pageParam === 0 ? 1 : pageParam;
       return await getStaffCall('PL', page.toString(), nameParam);
     },
     select: data => ({

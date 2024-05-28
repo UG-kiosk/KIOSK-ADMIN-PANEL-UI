@@ -12,9 +12,9 @@ export const useRegisterCall = () => {
       return await register(credentials);
     },
     // onError: () => \\ Toaster here
-    onSuccess: (data: { message: string }): void => {
-      // Toaster here
-    },
+    // onSuccess: (data: { message: string }): void => {
+    // Toaster here
+    // },
   });
 
   return { registerMutation };

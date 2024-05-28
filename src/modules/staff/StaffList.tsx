@@ -20,7 +20,6 @@ const StaffList = () => {
   const { staff, pagination } = useStaffPage();
   const {
     actions: { handleGoToPage },
-    state: {},
   } = usePagination({ pageSizes: [pagination?.itemsPerPage ?? 30], totalPages: pagination?.totalPages ?? 1 });
   const navigate = useNavigate();
   const { deleteStaffMutation } = useStaffCall();
