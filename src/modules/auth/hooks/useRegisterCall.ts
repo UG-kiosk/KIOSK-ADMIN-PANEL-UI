@@ -11,9 +11,9 @@ export const useRegisterCall = () => {
       await ensureValidAccessToken();
       return await register(credentials);
     },
-    onError: () => console.log('sth went wrong'),
+    // onError: () => \\ Toaster here
     onSuccess: (data: { message: string }): void => {
-      console.log('data', data);
+      // Toaster here
     },
   });
 

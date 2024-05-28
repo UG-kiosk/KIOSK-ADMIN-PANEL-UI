@@ -39,6 +39,7 @@ export const inputFieldStyles = createStyles({
       outline: 'none',
       borderColor: colors.primaryBlue,
     },
+    width: '100%',
   }),
   inputError: {},
 });

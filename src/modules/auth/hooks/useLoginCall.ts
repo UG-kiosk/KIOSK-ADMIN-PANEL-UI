@@ -15,7 +15,7 @@ export const useLoginCall = () => {
   const { mutateAsync: loginMutation } = useMutation({
     mutationKey: ['vehicleSpecification'],
     mutationFn: async (credentials: AdminLogin) => await login(credentials),
-    onError: () => console.log('Unauthorized'),
+    onError: () => navigate('/auth/login'),
     onSuccess: (data: { accessToken: string }): void => {
       const { username }: { username: string } = jwtDecode(data.accessToken);
       setUser({ username: username, accessToken: data.accessToken });

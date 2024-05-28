@@ -10,10 +10,8 @@ export const useChangePasswordCall = () => {
       await ensureValidAccessToken();
       return await updatePassword(credentials);
     },
-    // onError: () => console.log('sth went wrong'),
-    onSuccess: (data: { message: string }): void => {
-      console.log('data', data);
-    },
+    // onError: () => Toaster here,
+    // onSuccess: (data: { message: string }): void => {},
   });
 
   return { changePasswordMutation };

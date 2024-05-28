@@ -14,7 +14,6 @@ export const useRefreshTokenCall = () => {
     mutationFn: async () => await refreshToken(),
     onError: () => console.log('Unauthorized'), // TO DO
     onSuccess: (data: { accessToken: string }): void => {
-      console.log('refresh token success doing sth');
       const { username }: { username: string } = jwtDecode(data.accessToken);
       setUser({ username: username, accessToken: data.accessToken });
       localStorage.setItem('token', data.accessToken);
