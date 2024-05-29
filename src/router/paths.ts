@@ -6,6 +6,9 @@ export const paths = {
   createMajor: '/majors/create',
   ects: 'ects',
   news: 'news',
-  staff: 'staff',
   lessons: 'lessons',
+  staff: 'staff',
+  staffCreate: 'staff/form',
+  staffDetails: 'staff/:id',
+  staffEdit: 'staff/edit/:id',
 };

@@ -11,10 +11,10 @@ export const useRegisterCall = () => {
       await ensureValidAccessToken();
       return await register(credentials);
     },
-    onError: () => console.log('sth went wrong'),
-    onSuccess: (data: { message: string }): void => {
-      console.log('data', data);
-    },
+    // onError: () => \\ Toaster here
+    // onSuccess: (data: { message: string }): void => {
+    // Toaster here
+    // },
   });
 
   return { registerMutation };

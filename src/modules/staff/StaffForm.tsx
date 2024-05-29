@@ -4,9 +4,11 @@ import Button from '../../components/Button/Button';
 import PostFields from './PostFields';
 import { useStaffForm } from './hooks/useStaffForm';
 import { formStyles } from '../../styles/formStyles';
+import { useParams } from 'react-router-dom';
 
 const StaffForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useStaffForm();
+  const { id } = useParams<{ id?: string }>();
+  const { control, formFields, handleSubmit, onSubmit } = useStaffForm(id);
   return (
     <section css={formStyles.section}>
       <form css={formStyles.formContainer} onSubmit={handleSubmit(onSubmit)}>
@@ -27,7 +29,7 @@ const StaffForm = () => {
                       placeholder,
                       type: type,
                       onChange: (event: React.ChangeEvent<HTMLInputElement>) => field.onChange(event.target.value),
-                      value: field.value as string, // Add this line to ensure the value is of type string
+                      value: field.value as string,
                     }}
                     isRequired={isRequired}
                     errorMessage={error?.message}

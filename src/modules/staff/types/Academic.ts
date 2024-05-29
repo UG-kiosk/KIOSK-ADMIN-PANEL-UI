@@ -9,6 +9,7 @@ interface Content {
 }
 
 export interface Academic {
+  _id?: string;
   name: string;
   link: string;
   email: string;

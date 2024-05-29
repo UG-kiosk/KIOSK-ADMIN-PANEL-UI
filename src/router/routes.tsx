@@ -17,7 +17,8 @@ const sectionStyles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    padding: '40px 50px',
+    // padding: '40px 50px',
+    margin: '40px 50px',
   },
 });
 
@@ -71,6 +72,27 @@ const router = createBrowserRouter(
         ></Route>
         <Route
           path={paths.staff}
+          lazy={async () => {
+            const staff = await import('../modules/staff/StaffPage');
+            return { Component: staff.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.staffDetails}
+          lazy={async () => {
+            const staff = await import('../modules/staff/StaffPage');
+            return { Component: staff.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.staffCreate}
+          lazy={async () => {
+            const staff = await import('../modules/staff/StaffForm');
+            return { Component: staff.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.staffEdit}
           lazy={async () => {
             const staff = await import('../modules/staff/StaffForm');
             return { Component: staff.default };

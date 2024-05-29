@@ -17,6 +17,10 @@
   overflow: auto !important;
 }
 
+body {
+  background-color: #f5f5f5;
+}
+
 html,
 body,
 div,

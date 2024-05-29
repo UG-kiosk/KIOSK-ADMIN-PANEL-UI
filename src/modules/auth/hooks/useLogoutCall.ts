@@ -12,7 +12,7 @@ export const useLogoutCall = () => {
   const { mutateAsync: logoutMutation } = useMutation({
     mutationKey: ['vehicleSpecification'],
     mutationFn: async () => await logout(),
-    onError: () => console.log('Something went wrong'),
+    onError: () => {}, // TO DO
     onSuccess: () => {
       setUser({ username: null, accessToken: null });
       localStorage.removeItem('token');
