@@ -7,6 +7,7 @@ export const paths = {
   ects: 'ects',
   news: 'news',
   newsCreate: 'news/form',
+  newsDetails: 'news/:id',
   lessons: 'lessons',
   staff: 'staff',
   staffCreate: 'staff/form',

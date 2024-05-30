@@ -1,7 +1,7 @@
 import { Styles, createStyles } from '../../theme/utils';
 
 type ImageProps = {
-  src: string;
+  src?: string;
   alt?: string;
   styles?: Styles;
 };
@@ -9,7 +9,7 @@ type ImageProps = {
 const Image = ({ src, alt, styles }: ImageProps) => {
   return (
     <div css={[imageStyles.container, styles]}>
-      <img css={imageStyles.image} src={src} alt={alt || 'Image'} />
+      <img css={imageStyles.image} src={src || ''} alt={alt || 'Image'} />
     </div>
   );
 };

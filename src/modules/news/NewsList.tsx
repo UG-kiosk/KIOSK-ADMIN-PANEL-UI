@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { NewsResponseDTO } from './types/news';
 import Image from '../../components/Image/Image';
+import moment from 'moment';
 
 const NewsList = () => {
   const { news, pagination } = useNewsPage();
@@ -31,7 +32,6 @@ const NewsList = () => {
       {/* <Search /> */}
       <div>
         {news?.map((newsItem: NewsResponseDTO) => {
-          const date = new Date(newsItem.datetime);
           return (
             <Card
               key={newsItem._id}
@@ -43,7 +43,7 @@ const NewsList = () => {
               <Image src={newsItem.leadingPhoto}></Image>
               <Typography weight="bold">{newsItem.title}</Typography>
               <Typography size="xs">
-                {date.toLocaleDateString()} • {newsItem.source}
+                {` • ${moment(newsItem?.datetime).format('DD-MM-YYYY')} • ${newsItem?.source}`}
               </Typography>
               <Typography size="xs">{newsItem.shortBody}</Typography>
             </Card>

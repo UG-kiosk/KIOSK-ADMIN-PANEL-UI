@@ -1,5 +1,5 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
-import { NewsRequest, NewsResponse } from '../types/news';
+import { NewsRequest, NewsResponse, NewsResponseDTO } from '../types/news';
 
 export const addNewsCall = async (body: NewsRequest): Promise<NewsRequest> => {
   const addNewsUrl = new URL('http://localhost:5202/news');
@@ -38,6 +38,26 @@ export const getNewsCall = async (language: string, page: string, source: string
 
   if (!response.ok) {
     throw new Error(`[getNewsUrl]: ${response.status}. ${response.statusText}.`);
+  }
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const getNewsDetailsCall = async (id: string): Promise<NewsResponseDTO> => {
+  const language = 'PL';
+  const getNewsDetailsUrl = new URL('http://localhost:5202/kiosk-api/news/' + id + '?language=' + language);
+
+  const response = await fetch(getNewsDetailsUrl, {
+    method: HTTP_METHOD.GET,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`[getNewsDetailsUrl]: ${response.status}. ${response.statusText}.`);
   }
 
   const data = await response.json();
