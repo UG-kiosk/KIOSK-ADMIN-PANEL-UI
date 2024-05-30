@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { NewsResponseDTO } from './types/news';
 import Image from '../../components/Image/Image';
 import moment from 'moment';
+import { useNewsCall } from './hooks/useNewsCall';
 
 const NewsList = () => {
   const { news, pagination } = useNewsPage();
+  const { deleteNewsMutation } = useNewsCall();
   const {
     actions: { handleGoToPage },
   } = usePagination({ pageSizes: [pagination?.itemsPerPage ?? 30], totalPages: pagination?.totalPages ?? 1 });
@@ -38,7 +40,7 @@ const NewsList = () => {
               navigateTo={'/news/' + newsItem._id}
               displayDetails={true}
               displayDelete={true}
-              deleteAction={() => console.log(123)}
+              deleteAction={() => deleteNewsMutation(newsItem._id)}
             >
               <Image src={newsItem.leadingPhoto}></Image>
               <Typography weight="bold">{newsItem.title}</Typography>

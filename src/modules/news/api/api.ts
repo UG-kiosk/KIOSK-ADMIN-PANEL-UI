@@ -1,4 +1,5 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
+import { getAuthHeader } from '../../../shared/utils/getAuthHeader';
 import { NewsRequest, NewsResponse, NewsResponseDTO } from '../types/news';
 
 export const addNewsCall = async (body: NewsRequest): Promise<NewsRequest> => {
@@ -63,4 +64,20 @@ export const getNewsDetailsCall = async (id: string): Promise<NewsResponseDTO> =
   const data = await response.json();
 
   return data;
+};
+
+export const deleteNewsCall = async (id: string): Promise<void> => {
+  const deleteNewsUrl = new URL('http://localhost:5202/kiosk-api/news/' + id);
+
+  const response = await fetch(deleteNewsUrl, {
+    method: HTTP_METHOD.DELETE,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: getAuthHeader(),
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`[deleteNewsUrl]: ${response.status}. ${response.statusText}.`);
+  }
 };
