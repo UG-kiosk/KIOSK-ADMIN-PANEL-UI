@@ -1,3 +1,5 @@
+import { IPagination } from '../../../shared/types/Pagination';
+
 export interface News {
   leadingPhoto: string;
   photos: string[];
@@ -34,4 +36,23 @@ export enum NewsCategory {
 export enum NewsSource {
   INF = 'INF',
   MFI = 'MFI',
+}
+
+export interface NewsResponseDTO {
+  _id: string;
+  leadingPhoto: string;
+  photos: string[];
+  link: string;
+  datetime: Date;
+  title: string;
+  shortBody: string;
+  body: string;
+  source: NewsSource;
+  category: NewsCategory;
+  language: string;
+}
+
+export interface NewsResponse {
+  content: NewsResponseDTO[];
+  pagination: IPagination;
 }
