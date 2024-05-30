@@ -66,7 +66,7 @@ const router = createBrowserRouter(
         <Route
           path={paths.news}
           lazy={async () => {
-            const news = await import('../modules/news/newsForm/NewsForm');
+            const news = await import('../modules/news/NewsForm');
             return { Component: news.default };
           }}
         ></Route>

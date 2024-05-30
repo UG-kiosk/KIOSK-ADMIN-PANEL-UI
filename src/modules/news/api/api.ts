@@ -1,4 +1,4 @@
-import { HTTP_METHOD } from '../../../../shared/constants/httpMethods';
+import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
 import { NewsRequest } from '../types/news';
 
 export const addNewsCall = async (body: NewsRequest): Promise<NewsRequest> => {
