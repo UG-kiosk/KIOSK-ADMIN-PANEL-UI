@@ -17,7 +17,6 @@ export const getStaffCall = async (language: string, page: string, name: string)
       'Content-Type': 'application/json',
     },
   });
-np
   if (!response.ok) {
     throw new Error(`[getStaffUrl]: ${response.status}. ${response.statusText}.`);
   }
