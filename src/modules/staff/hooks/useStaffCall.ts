@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { addStaffCall, updateStaffCall, deleteStaffCall } from '../api/api';
-import { Academic } from '../types/academic';
+import { Academic } from '../types/Academic';
 import { useRefreshTokenCall } from '../../auth/hooks/useRefreshTokenCall';
 import { useNavigate } from 'react-router-dom';
 

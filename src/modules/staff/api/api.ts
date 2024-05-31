@@ -1,7 +1,7 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
 import { getAuthHeader } from '../../../shared/utils/getAuthHeader';
 import { StaffResponse } from '../types/StaffResponse';
-import { Academic } from '../types/academic';
+import { Academic } from '../types/Academic';
 
 export const getStaffCall = async (language: string, page: string, name: string): Promise<StaffResponse> => {
   const params = new URLSearchParams({
@@ -17,7 +17,7 @@ export const getStaffCall = async (language: string, page: string, name: string)
       'Content-Type': 'application/json',
     },
   });
-
+np
   if (!response.ok) {
     throw new Error(`[getStaffUrl]: ${response.status}. ${response.statusText}.`);
   }
