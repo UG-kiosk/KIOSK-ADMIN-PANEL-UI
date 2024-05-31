@@ -6,6 +6,7 @@ import { createStyles } from '../../../theme/utils';
 import Dropdown from '../../../components/Dropdown/Dropdown';
 import { Degree } from '../../../shared/constants/degree';
 import { Typography } from '../../../components/Typography/Typography';
+import RecruitmentYearsFields from './components/RecruitmentYearFields';
 
 const EctsForm = () => {
   const { control, formFields, handleSubmit, onSubmit } = useEctsForm();
@@ -19,38 +20,47 @@ const EctsForm = () => {
               key={name}
               control={control}
               name={name}
-              render={({ field, fieldState: { error } }) =>
-                name === 'degree' ? (
-                  <Dropdown defaultValue={Degree.BACHELOR} onValueChange={event => field.onChange(event)}>
-                    <Dropdown.Trigger>
-                      <Dropdown.Value />
-                    </Dropdown.Trigger>
-                    <Dropdown.Content>
-                      {Object.values(Degree).map(degree => (
-                        <Dropdown.Item value={degree} key={degree}>
-                          <Typography>{degree}</Typography>
-                        </Dropdown.Item>
-                      ))}
-                    </Dropdown.Content>
-                  </Dropdown>
-                ) : (
-                  <FormField
-                    isError={!!error}
-                    inputProps={{
-                      ...field,
-                      placeholder,
-                      type: type,
-                      onChange: event => field.onChange(event.target.value),
-                    }}
-                    isRequired={isRequired}
-                    errorMessage={error?.message}
-                    label={label}
-                    name={field.name}
-                    ref={field.ref}
-                    inputType="base"
-                  />
-                )
-              }
+              render={({ field, fieldState: { error } }) => {
+                switch (name) {
+                  case 'degree':
+                    return (
+                      <Dropdown defaultValue={Degree.BACHELOR} onValueChange={event => field.onChange(event)}>
+                        <Dropdown.Trigger>
+                          <Dropdown.Value />
+                        </Dropdown.Trigger>
+                        <Dropdown.Content>
+                          {Object.values(Degree).map(degree => (
+                            <Dropdown.Item value={degree} key={degree}>
+                              <Typography>{degree}</Typography>
+                            </Dropdown.Item>
+                          ))}
+                        </Dropdown.Content>
+                      </Dropdown>
+                    );
+                  case 'recruitmentYear':
+                    return <RecruitmentYearsFields control={control} />;
+
+                  default:
+                    return (
+                      <FormField
+                        isError={!!error}
+                        inputProps={{
+                          ...field,
+                          value: field.value as string | number,
+                          placeholder,
+                          type: type,
+                          onChange: event => field.onChange(event.target.value),
+                        }}
+                        isRequired={isRequired}
+                        errorMessage={error?.message}
+                        label={label}
+                        name={field.name}
+                        ref={field.ref}
+                        inputType="base"
+                      />
+                    );
+                }
+              }}
             />
           ))}
         </fieldset>

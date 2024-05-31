@@ -1,5 +1,5 @@
 import { Degree } from '../../../shared/constants/degree';
-import { SortDirection } from './sort';
+import { SortDirection } from '../../staff/types/sort';
 
 export interface PaginationRequest {
   page?: number;

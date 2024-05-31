@@ -120,6 +120,27 @@ const router = createBrowserRouter(
           return { Component: login.default };
         }}
       ></Route>
+      <Route
+        path={paths.ects}
+        lazy={async () => {
+          const ects = await import('../modules/ects/ectsMainPage/EctsMainPage');
+          return { Component: ects.default };
+        }}
+      ></Route>
+      <Route
+        path={paths.addEcts}
+        lazy={async () => {
+          const ects = await import('../modules/ects/ectsForm/EctsForm');
+          return { Component: ects.default };
+        }}
+      ></Route>
+      <Route
+        path={paths.staff}
+        lazy={async () => {
+          const staff = await import('../modules/staff/StaffForm');
+          return { Component: staff.default };
+        }}
+      ></Route>
     </>,
   ),
 );

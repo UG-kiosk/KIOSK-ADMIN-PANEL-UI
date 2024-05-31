@@ -1,5 +1,7 @@
 export const paths = {
   root: '/',
+  majors: '/majors/scraper',
+  addEcts: '/ects/create',
   login: 'auth/login',
   profile: 'admin/profile',
   majorsScraper: 'majors/scraper',

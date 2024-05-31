@@ -2,7 +2,10 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from '../../../../shared/types/FormField';
-import { useEctsCall } from '../api/useEctsCall';
+import useEctsOneSubjectCall from '../../api/hooks/useGetOneEctsCall';
+import { EctsSubject } from '../../types/ectsSubject';
+import useAddEctsCall from '../../api/hooks/useAddEctsCall';
+import useUpdateEctsCall from '../../api/hooks/useUpdateEctsCall';
 
 const ectsSchema = z.object({
   subject: z.string().trim().min(1, 'Subject cannot be empty'),
@@ -16,10 +19,10 @@ const ectsSchema = z.object({
   degree: z.string(),
   term: z.coerce.number().min(1).max(6, 'Term should be between 1 and 6'),
   year: z.coerce.string(),
-  recruitmentYear: z.number(),
+  recruitmentYear: z.array(z.object({ year: z.coerce.number() })),
 });
 
-type ectsSchema = z.infer<typeof ectsSchema>;
+export type ectsSchema = z.infer<typeof ectsSchema>;
 
 type FieldName = keyof ectsSchema;
 
@@ -113,27 +116,46 @@ const defaultEctsValues: ectsSchema = {
   major: '',
   degree: 'Bachelor',
   year: 'I',
-  recruitmentYear: 2024,
+  recruitmentYear: [{ year: 2024 }],
   term: 1,
 };
 
 export const useEctsForm = () => {
+  const { ectsOneSubject, idParam } = useEctsOneSubjectCall();
+  const isUpdate = idParam ? true : false;
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: defaultEctsValues,
+    values: ectsOneSubject && getDefaultValue(ectsOneSubject),
     resolver: zodResolver(ectsSchema),
     mode: 'onBlur',
   });
-  const { addEctsSubjectMutation } = useEctsCall();
-  const onSubmit = (data: ectsSchema) => {
-    // After talk with Justyna we gonna change this pattern
+  const { addEctsSubjectMutation } = useAddEctsCall();
+  const { updateEctsSubjectMutation } = useUpdateEctsCall();
 
-    const ectsSubject = { ...data, recruitmentYear: [data.recruitmentYear] };
-    addEctsSubjectMutation(ectsSubject);
+  const onSubmit = (data: ectsSchema) => {
+    const ects = prepareData(data, idParam || undefined);
+
+    isUpdate ? updateEctsSubjectMutation(ects) : addEctsSubjectMutation(ects);
   };
 
   return { control, formFields, handleSubmit, onSubmit, errors };
 };
+
+const getDefaultValue = (ectsSubject: EctsSubject) => {
+  const ectsis: ectsSchema = {
+    ...ectsSubject,
+    recruitmentYear: ectsSubject.recruitmentYear.map(yearValue => ({ year: yearValue })),
+  };
+  return ectsis;
+};
+
+const prepareData = (ectsSubject: ectsSchema, id?: string) => ({
+  ...ectsSubject,
+  _id: id,
+  recruitmentYear: ectsSubject.recruitmentYear.map(formObject => formObject.year),
+});
