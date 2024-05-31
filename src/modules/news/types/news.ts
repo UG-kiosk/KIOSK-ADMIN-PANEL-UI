@@ -38,6 +38,12 @@ export enum NewsSource {
   MFI = 'MFI',
 }
 
+export enum NewsSourceAll {
+  ALL = 'ALL',
+  INF = 'INF',
+  MFI = 'MFI',
+}
+
 export interface NewsResponseDTO {
   _id: string;
   leadingPhoto: string;

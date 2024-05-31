@@ -7,12 +7,13 @@ const useNewsPage = () => {
 
   const pageParam = Number(handleGetSearchParam('page')) ?? 1;
   const sourceParam = handleGetSearchParam('source') ?? '';
+  const searchParam = handleGetSearchParam('search') ?? '';
 
   const { data: newsListData } = useQuery({
-    queryKey: ['newsList', pageParam, sourceParam],
+    queryKey: ['newsList', pageParam, sourceParam, searchParam],
     queryFn: async () => {
       const page = pageParam === 0 ? 1 : pageParam;
-      return await getNewsCall('Pl', page.toString(), sourceParam);
+      return await getNewsCall('Pl', page.toString(), sourceParam, searchParam);
     },
     select: data => ({
       news: data.content,

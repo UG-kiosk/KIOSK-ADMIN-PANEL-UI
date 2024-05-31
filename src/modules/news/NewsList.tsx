@@ -10,6 +10,7 @@ import { NewsResponseDTO } from './types/news';
 import Image from '../../components/Image/Image';
 import moment from 'moment';
 import { useNewsCall } from './hooks/useNewsCall';
+import Search from './Search';
 
 const NewsList = () => {
   const { news, pagination } = useNewsPage();
@@ -31,7 +32,7 @@ const NewsList = () => {
       <Typography size="xl" weight="bold">
         News List
       </Typography>
-      {/* <Search /> */}
+      <Search />
       <div>
         {news?.map((newsItem: NewsResponseDTO) => {
           return (

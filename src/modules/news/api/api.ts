@@ -22,11 +22,17 @@ export const addNewsCall = async (body: NewsRequest): Promise<NewsRequest> => {
   return data;
 };
 
-export const getNewsCall = async (language: string, page: string, source: string): Promise<NewsResponse> => {
+export const getNewsCall = async (
+  language: string,
+  page: string,
+  source: string,
+  search: string,
+): Promise<NewsResponse> => {
   const params = new URLSearchParams({
     language,
     page,
     source,
+    search,
   });
   const getNewsUrl = new URL(`http://localhost:5202/kiosk-api/news?${params.toString()}`);
 
