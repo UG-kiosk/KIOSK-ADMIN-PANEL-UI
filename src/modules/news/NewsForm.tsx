@@ -8,9 +8,11 @@ import { Typography } from '../../components/Typography/Typography';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { formStyles } from '../../styles/formStyles';
+import { useParams } from 'react-router-dom';
 
 const NewsForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useNewsForm();
+  const { id } = useParams<{ id?: string }>();
+  const { control, formFields, handleSubmit, onSubmit } = useNewsForm(id);
   const {
     fields: photosFields,
     append,

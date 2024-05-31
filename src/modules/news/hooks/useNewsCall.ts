@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { NewsRequest } from '../types/news';
-import { addNewsCall, deleteNewsCall } from '../api/api';
+import { addNewsCall, deleteNewsCall, updateNewsCall } from '../api/api';
 import { useRefreshTokenCall } from '../../auth/hooks/useRefreshTokenCall';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,5 +27,18 @@ export const useNewsCall = () => {
     },
   });
 
-  return { addNewsMutation, deleteNewsMutation };
+  const { mutateAsync: updateNewsMutation } = useMutation({
+    mutationKey: ['vehicleSpecification'],
+    mutationFn: async ({ id, news }: { id: string; news: NewsRequest }) => {
+      // await ensureValidAccessToken();
+      return await updateNewsCall(id, news);
+    },
+    // onError: () => Toaster here,
+    onSuccess: data => {
+      navigate('/news/' + data._id);
+      // Toaster here
+    },
+  });
+
+  return { addNewsMutation, updateNewsMutation, deleteNewsMutation };
 };

@@ -5,17 +5,22 @@ import useNewsDetailsPage from './hooks/useNewsDetails';
 import DOMPurify from 'dompurify';
 import moment from 'moment';
 import Image from '../../components/Image/Image';
+import Button from '../../components/Button/Button';
+import { useNewsCall } from './hooks/useNewsCall';
+import { useNavigate } from 'react-router-dom';
 
 const NewsDetails = ({ id }: { id: string }) => {
   const { newsDetailsData } = useNewsDetailsPage(id);
+  const { deleteNewsMutation } = useNewsCall();
   const cleanBody = newsDetailsData?.body ? DOMPurify.sanitize(newsDetailsData.body) : '';
+  const navigate = useNavigate();
 
   return (
     <div css={newsDetailsStyles.container}>
       <Typography size="lg" weight="bold">
         News details
       </Typography>
-      <Card navigateTo={'/news/edit/' + id} displayUpdate={false} displayDelete={false}>
+      <Card displayUpdate={false} displayDelete={false}>
         <Typography size="lg" weight="bold">
           {newsDetailsData?.title}
         </Typography>
@@ -33,6 +38,14 @@ const NewsDetails = ({ id }: { id: string }) => {
           })}
         </div>
         <div dangerouslySetInnerHTML={{ __html: cleanBody }} css={newsDetailsStyles.body}></div>
+        <div css={newsDetailsStyles.buttons}>
+          <Button label="Update" variant="primary" onClick={() => navigate('/news/edit/' + newsDetailsData?._id)} />
+          <Button
+            label="Delete"
+            variant="cancel"
+            onClick={() => newsDetailsData && deleteNewsMutation(newsDetailsData._id)}
+          />
+        </div>
       </Card>
     </div>
   );
@@ -62,5 +75,9 @@ const newsDetailsStyles = createStyles({
   body: {
     maxWidth: '750px',
     wordBreak: 'break-word',
+  },
+  buttons: {
+    display: 'inline-flex',
+    gap: '5px',
   },
 });

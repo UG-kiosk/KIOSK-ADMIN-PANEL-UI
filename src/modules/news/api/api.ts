@@ -66,6 +66,27 @@ export const getNewsDetailsCall = async (id: string): Promise<NewsResponseDTO> =
   return data;
 };
 
+export const updateNewsCall = async (id: string, body: NewsRequest): Promise<NewsResponseDTO> => {
+  const updateNewsUrl = new URL('http://localhost:5202/kiosk-api/news/' + id);
+
+  const response = await fetch(updateNewsUrl, {
+    method: HTTP_METHOD.PUT,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: getAuthHeader(),
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`[updateNewsUrl]: ${response.status}. ${response.statusText}.`);
+  }
+
+  const data = await response.json();
+
+  return data;
+};
+
 export const deleteNewsCall = async (id: string): Promise<void> => {
   const deleteNewsUrl = new URL('http://localhost:5202/kiosk-api/news/' + id);
 

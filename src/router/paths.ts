@@ -8,6 +8,7 @@ export const paths = {
   news: 'news',
   newsCreate: 'news/form',
   newsDetails: 'news/:id',
+  newsEdit: 'news/edit/:id',
   lessons: 'lessons',
   staff: 'staff',
   staffCreate: 'staff/form',
