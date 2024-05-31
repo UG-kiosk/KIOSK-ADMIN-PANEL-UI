@@ -1,4 +1,5 @@
 export interface EctsSubject {
+  _id?: string;
   subject: string;
   lectureHours: number;
   recitationHours: number;

@@ -16,7 +16,10 @@ const router = createBrowserRouter(
         <SearchParamsProvider>
           <main css={mainStyles.main}>
             <SideBar />
-            <Outlet />
+            <section>
+              <header />
+              <Outlet />
+            </section>
           </main>
         </SearchParamsProvider>
       }
@@ -33,6 +36,13 @@ const router = createBrowserRouter(
         path={paths.ects}
         lazy={async () => {
           const ects = await import('../modules/ects/ectsMainPage/EctsMainPage');
+          return { Component: ects.default };
+        }}
+      ></Route>
+      <Route
+        path={paths.addEcts}
+        lazy={async () => {
+          const ects = await import('../modules/ects/ectsForm/EctsForm');
           return { Component: ects.default };
         }}
       ></Route>

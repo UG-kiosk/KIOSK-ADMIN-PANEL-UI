@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { addStaffCall } from '../api/api';
-import { Academic } from '../types/Academic';
+import { Academic } from '../types/academic';
 
 export const useStaffCall = () => {
   const { mutateAsync: addStaffMutation } = useMutation({

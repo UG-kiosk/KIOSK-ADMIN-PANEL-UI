@@ -1,5 +1,5 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
-import { Academic } from '../types/Academic';
+import { Academic } from '../types/academic';
 
 export const addStaffCall = async (body: Academic): Promise<Academic> => {
   const addStaffUrl = new URL('http://localhost:5202/staff');

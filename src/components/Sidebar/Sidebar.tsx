@@ -67,7 +67,7 @@ const sideBarStyles = createStyles({
   sideBar: ({ colors }) => ({
     minWidth: 320,
     minHeight: '100vh',
-    backgroundColor: colors.whiteSmoke,
+    backgroundColor: colors.white,
     padding: '40px 20px',
     display: 'flex',
     flexDirection: 'column',
