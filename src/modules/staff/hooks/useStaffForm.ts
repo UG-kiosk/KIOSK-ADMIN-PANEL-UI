@@ -3,6 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from '../../../shared/types/FormField';
 import { useForm } from 'react-hook-form';
 import { useStaffCall } from './useStaffCall';
+import { useEffect } from 'react';
+import useStaffMemberPage from './useStaffMemberPage';
 
 const academicSchema = z.object({
   name: z.string().trim().min(6, 'Name must be at least 6 characters long').max(50, 'Name is too long'),
@@ -14,10 +16,10 @@ const academicSchema = z.object({
     .regex(/mfi\.ug\.edu\.pl/, 'Link must contain mfi.ug.edu.pl'),
   email: z
     .string()
-    .email()
+    // .email()
     .min(1, 'Email cannot be empty')
     .max(50, 'Email is too long')
-    .regex(/@ug\.edu\.pl$/, 'Email must contain @ug.edu.pl'),
+    .regex(/@(.+\.)?ug\.edu\.pl$/, 'Email must contain domain ug.edu.pl'),
   tutorial: z.string(),
   posts: z.array(
     z.object({
@@ -97,18 +99,40 @@ export type FormValues = {
   posts: { position: string; faculty: { name: string }[] }[];
 };
 
-export const useStaffForm = () => {
+export const useStaffForm = (id?: string) => {
+  const { addStaffMutation, updateStaffMemberMutation } = useStaffCall();
+  const { staffMemberData } = useStaffMemberPage(id ?? '');
+
   const {
     control,
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
   } = useForm<FormValues>({
     defaultValues: defaultAcademicValues,
     resolver: zodResolver(academicSchema),
     mode: 'onBlur',
   });
-  const { addStaffMutation } = useStaffCall();
+
+  useEffect(() => {
+    if (id) {
+      if (staffMemberData) {
+        const data = {
+          name: staffMemberData.name ?? '',
+          email: staffMemberData.email ?? '',
+          link: staffMemberData.link ?? '',
+          tutorial: staffMemberData.content!.tutorial ?? '',
+          posts: staffMemberData.content!.posts.map(post => ({
+            position: post.position,
+            faculty: post.faculty.map(facultyName => ({ name: facultyName })),
+          })),
+        };
+        reset(data);
+      }
+    }
+  }, [id, staffMemberData, reset]);
+
   const onSubmit = (data: academicSchema) => {
     const { name, email, link, tutorial, posts } = data;
 
@@ -126,6 +150,11 @@ export const useStaffForm = () => {
         posts: mappedPosts,
       },
     };
+
+    if (id) {
+      updateStaffMemberMutation({ id, academic: dto });
+      return;
+    }
     addStaffMutation(dto);
   };
 

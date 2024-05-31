@@ -27,9 +27,7 @@ export const MajorsScraperPage = () => {
 
   const onSubmit: SubmitHandler<CreateScrapedMajorsFormTypes> = useCallback(
     async ({ majors }: CreateScrapedMajorsFormTypes) => {
-      console.log(majors);
       await createMajors(majors as unknown as CreateMajorRequest[]);
-      console.log('Majors created');
     },
     [createMajors],
   );

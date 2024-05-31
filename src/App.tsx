@@ -1,7 +1,7 @@
 import Modal from './components/Modal/Modal';
 import Tile from './components/Tile/Tile';
 import { EctsSubject } from './modules/ects/types/ectsSubject';
-import { useNavigate } from 'react-router';
+
 const exampleEctsSubject: EctsSubject = {
   subject: 'Mathematics',
   lectureHours: 30,
@@ -34,14 +34,11 @@ const verylongName: EctsSubject = {
 };
 
 function App() {
-  const navigate = useNavigate();
-
   return (
     <div css={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <Modal />
       <Tile object={exampleEctsSubject} arrayOfKey={['subject', 'term']} />
       <Tile object={verylongName} arrayOfKey={['subject', 'term']} />
-      <button onClick={() => navigate(-1)}></button>
     </div>
   );
 }
