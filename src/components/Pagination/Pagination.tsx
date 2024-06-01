@@ -19,8 +19,8 @@ const Pagination = ({ currentPage, setCurentPage, totalPages }: PaginationProps)
     className=""
     truncableText="..."
     truncableClassName=""
-    edgePageCount={1}
-    middlePagesSiblingCount={0}
+    edgePageCount={2}
+    middlePagesSiblingCount={1}
     totalPages={totalPages}
     css={styles.pagination}
   >

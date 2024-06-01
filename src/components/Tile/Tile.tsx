@@ -8,9 +8,11 @@ type TileProps<T> = {
   arrayOfKey: (keyof T)[];
   styles?: Styles;
   ellipsAfter?: number;
+  onUpdate?: () => void;
+  onDelete?: () => void;
 };
 
-const Tile = <T,>({ object, arrayOfKey, styles, ellipsAfter = 40 }: TileProps<T>) => {
+const Tile = <T,>({ object, arrayOfKey, styles, ellipsAfter = 40, onDelete, onUpdate }: TileProps<T>) => {
   return (
     <div css={[tileStyles.tile, styles]}>
       <section css={tileStyles.section}>
@@ -21,8 +23,8 @@ const Tile = <T,>({ object, arrayOfKey, styles, ellipsAfter = 40 }: TileProps<T>
         ))}
       </section>
       <div css={tileStyles.buttons}>
-        <Button label="Update" variant="accept" />
-        <Button label="Delete" variant="cancel" />
+        <Button label="Update" variant="accept" onClick={onUpdate} />
+        <Button label="Delete" variant="cancel" onClick={onDelete} />
       </div>
     </div>
   );

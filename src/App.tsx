@@ -1,3 +1,4 @@
+import Modal from './components/Modal/Modal';
 import Tile from './components/Tile/Tile';
 import { EctsSubject } from './modules/ects/types/ectsSubject';
 
@@ -35,6 +36,7 @@ const verylongName: EctsSubject = {
 function App() {
   return (
     <div css={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <Modal />
       <Tile object={exampleEctsSubject} arrayOfKey={['subject', 'term']} />
       <Tile object={verylongName} arrayOfKey={['subject', 'term']} />
     </div>
