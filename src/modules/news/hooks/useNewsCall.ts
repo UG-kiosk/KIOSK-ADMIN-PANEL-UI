@@ -1,17 +1,21 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NewsRequest } from '../types/news';
 import { addNewsCall, deleteNewsCall, updateNewsCall } from '../api/api';
-import { useRefreshTokenCall } from '../../auth/hooks/useRefreshTokenCall';
+// import { useRefreshTokenCall } from '../../auth/hooks/useRefreshTokenCall';
 import { useNavigate } from 'react-router-dom';
 
 export const useNewsCall = () => {
-  const { ensureValidAccessToken } = useRefreshTokenCall();
+  // const { ensureValidAccessToken } = useRefreshTokenCall();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutateAsync: addNewsMutation } = useMutation({
     mutationKey: ['vehicleSpecification'],
     mutationFn: async (news: NewsRequest) => await addNewsCall(news),
     // onError: () => Toaster here,
-    // onSuccess: data => Toaster here,
+    onSuccess: () => {
+      navigate('/news');
+      return queryClient.invalidateQueries({ queryKey: ['newsList'] });
+    },
   });
 
   const { mutateAsync: deleteNewsMutation } = useMutation({
@@ -22,7 +26,8 @@ export const useNewsCall = () => {
     },
     // onError: () => Toaster here,
     onSuccess: () => {
-      navigate('/news');
+      return queryClient.invalidateQueries({ queryKey: ['newsList'] });
+
       // Toaster here
     },
   });
