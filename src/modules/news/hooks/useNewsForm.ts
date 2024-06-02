@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormField } from '../../../../shared/types/FormField';
+import { FormField } from '../../../shared/types/FormField';
 import { useNewsCall } from './useNewsCall';
 import { NewsCategory, NewsRequest, NewsSource } from '../types/news';
+import useNewsDetailsPage from './useNewsDetails';
+import { useEffect } from 'react';
 
 const newsSchema = z.object({
   title: z.string().min(1, 'Title cannot be empty'),
@@ -99,17 +101,40 @@ const defaultNewsValues: newsSchema = {
   category: NewsCategory.NEWS,
 };
 
-export const useNewsForm = () => {
+export const useNewsForm = (id?: string) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: defaultNewsValues,
     resolver: zodResolver(newsSchema),
     mode: 'onBlur',
   });
-  const { addNewsMutation } = useNewsCall();
+  const { addNewsMutation, updateNewsMutation } = useNewsCall();
+  const { newsDetailsData } = useNewsDetailsPage(id ?? '');
+
+  useEffect(() => {
+    if (id) {
+      if (newsDetailsData) {
+        const data = {
+          title: newsDetailsData.title ?? '',
+          shortBody: newsDetailsData.shortBody ?? '',
+          body: newsDetailsData.body ?? '',
+          leadingPhoto: newsDetailsData.leadingPhoto ?? '',
+          link: newsDetailsData.link ?? '',
+          source: newsDetailsData.source ?? NewsSource.INF,
+          category: newsDetailsData.category ?? NewsCategory.NEWS,
+          photos: newsDetailsData.photos.map(photo => ({
+            photo: photo,
+          })),
+        };
+        reset(data);
+      }
+    }
+  }, [id, newsDetailsData, reset]);
+
   const onSubmit = (data: newsSchema) => {
     const { title, shortBody, body, leadingPhoto, photos, link, source, category } = data;
     const photosArray = photos.map(photo => photo.photo);
@@ -129,6 +154,10 @@ export const useNewsForm = () => {
       datetime,
       sourceLanguage: 'Pl',
     };
+    if (id) {
+      updateNewsMutation({ id, news: newsData });
+      return;
+    }
     addNewsMutation(newsData);
   };
   return { control, formFields, handleSubmit, onSubmit, errors };
