@@ -65,7 +65,7 @@ const router = createBrowserRouter(
         <Route
           path={paths.ects}
           lazy={async () => {
-            const ects = await import('../modules/ects/ectsMainPage/ectsMainPage.tsx');
+            const ects = await import('../modules/ects/ectsMainPage/EctsMainPage.tsx');
             return { Component: ects.default };
           }}
         ></Route>
