@@ -21,10 +21,17 @@ export const addLessonsCall = async (body: LessonPlanRequest): Promise<LessonPla
   return data;
 };
 
-export const getLessonsCall = async (language: string, page: string): Promise<LessonResponse> => {
+export const getLessonsCall = async (
+  language: string,
+  page: string,
+  day: string,
+  search: string,
+): Promise<LessonResponse> => {
   const params = new URLSearchParams({
     language,
     page,
+    day,
+    search,
   });
   const getLessonsUrl = new URL(`http://localhost:5202/kiosk-api/lessonsPlans/all?${params.toString()}`);
 

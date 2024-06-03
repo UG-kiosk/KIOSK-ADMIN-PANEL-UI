@@ -6,6 +6,7 @@ import { createStyles } from '../../theme/utils';
 import Button from '../../components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../components/Card/Card';
+import Search from './Search';
 
 const LessonsList = () => {
   const { lessons, pagination } = useLessonsPage();
@@ -26,6 +27,7 @@ const LessonsList = () => {
       <Typography size="xl" weight="bold">
         Lessons List
       </Typography>
+      <Search />
       <div>
         {lessons?.map(lesson => {
           return (

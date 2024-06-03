@@ -6,12 +6,14 @@ const useLessonsPage = () => {
   const { handleGetSearchParam } = useSearchParamsContext();
 
   const pageParam = Number(handleGetSearchParam('page')) ?? 1;
+  const dayParam = handleGetSearchParam('day') ?? '';
+  const searchParam = handleGetSearchParam('search') ?? '';
 
   const { data: lessonsListData } = useQuery({
-    queryKey: ['lessonsList', pageParam],
+    queryKey: ['lessonsList', pageParam, dayParam, searchParam],
     queryFn: async () => {
       const page = pageParam === 0 ? 1 : pageParam;
-      return await getLessonsCall('Pl', page.toString());
+      return await getLessonsCall('Pl', page.toString(), dayParam, searchParam);
     },
     select: data => ({
       lessons: data.content,
