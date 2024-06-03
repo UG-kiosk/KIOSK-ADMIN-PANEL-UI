@@ -140,13 +140,6 @@ const router = createBrowserRouter(
           }}
         ></Route>
         <Route
-          path={paths.ects}
-          lazy={async () => {
-            const ects = await import('../modules/ects/EctsMainPage/EctsMainPage');
-            return { Component: ects.default };
-          }}
-        ></Route>
-        <Route
           path={paths.addEcts}
           lazy={async () => {
             const ects = await import('../modules/ects/EctsForm/EctsForm');
