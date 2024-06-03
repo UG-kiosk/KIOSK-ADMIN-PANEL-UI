@@ -3,6 +3,8 @@ import { NewsRequest } from '../types/news';
 import { addNewsCall, deleteNewsCall, updateNewsCall } from '../api/api';
 // import { useRefreshTokenCall } from '../../auth/hooks/useRefreshTokenCall';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Messages } from '../../../shared/constants/messages';
 
 export const useNewsCall = () => {
   // const { ensureValidAccessToken } = useRefreshTokenCall();
@@ -11,10 +13,11 @@ export const useNewsCall = () => {
   const { mutateAsync: addNewsMutation } = useMutation({
     mutationKey: ['vehicleSpecification'],
     mutationFn: async (news: NewsRequest) => await addNewsCall(news),
-    // onError: () => Toaster here,
+    onError: () => toast(Messages.ERROR),
     onSuccess: () => {
       navigate('/news');
-      return queryClient.invalidateQueries({ queryKey: ['newsList'] });
+      queryClient.invalidateQueries({ queryKey: ['newsList'] });
+      toast(Messages.ADDED);
     },
   });
 
