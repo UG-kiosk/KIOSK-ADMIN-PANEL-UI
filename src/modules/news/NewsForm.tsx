@@ -1,16 +1,18 @@
 import { useNewsForm } from './hooks/useNewsForm';
 import { Controller, useFieldArray } from 'react-hook-form';
-import FormField from '../../../components/FormField/FormField';
-import Button from '../../../components/Button/Button';
-import Dropdown from '../../../components/Dropdown/Dropdown';
+import FormField from '../../components/FormField/FormField';
+import Button from '../../components/Button/Button';
+import Dropdown from '../../components/Dropdown/Dropdown';
 import { NewsSource, NewsCategory } from './types/news';
-import { Typography } from '../../../components/Typography/Typography';
+import { Typography } from '../../components/Typography/Typography';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import { formStyles } from '../../../styles/formStyles';
+import { formStyles } from '../../styles/formStyles';
+import { useParams } from 'react-router-dom';
 
 const NewsForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useNewsForm();
+  const { id } = useParams<{ id?: string }>();
+  const { control, formFields, handleSubmit, onSubmit } = useNewsForm(id);
   const {
     fields: photosFields,
     append,
