@@ -1,10 +1,10 @@
 import { useLessonsForm } from './hooks/useLessonsForm';
 import { Controller, useFieldArray } from 'react-hook-form';
-import FormField from '../../../components/FormField/FormField';
-import Button from '../../../components/Button/Button';
-import Dropdown from '../../../components/Dropdown/Dropdown';
-import { Typography } from '../../../components/Typography/Typography';
-import { formStyles } from '../../../styles/formStyles';
+import FormField from '../../components/FormField/FormField';
+import Button from '../../components/Button/Button';
+import Dropdown from '../../components/Dropdown/Dropdown';
+import { Typography } from '../../components/Typography/Typography';
+import { formStyles } from '../../styles/formStyles';
 import { DaysOfWeek, LessonType } from './types/lessons';
 
 const LessonsForm = () => {
