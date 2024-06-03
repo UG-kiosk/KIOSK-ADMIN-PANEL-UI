@@ -4,13 +4,13 @@ import { Degree } from '../../../../shared/constants/degree';
 
 import { fetchEctsSubjects } from '../api';
 import useDeleteEcts from './useDeleteEcts';
-import { isDegree, isSort } from '../../EctsMainPage/helpers/sortHelpers';
+import { isDegree, isSort } from '../../ectsMainPage/helpers/sortHelpers';
 import {
   DEGREE_PARAM_NAME,
   FILTER_PARAM_NAME,
   PAGE_PARAM_NAME,
   SORT_PARAM_NAME,
-} from '../../EctsMainPage/sections/useSearch';
+} from '../../ectsMainPage/sections/useSearch';
 
 const useGetAllEctsCall = () => {
   const { deleteEctsSubjectMutation } = useDeleteEcts();

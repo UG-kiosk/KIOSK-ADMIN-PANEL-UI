@@ -65,7 +65,7 @@ const router = createBrowserRouter(
         <Route
           path={paths.ects}
           lazy={async () => {
-            const ects = await import('../modules/ects/EctsMainPage/ectsMainPage.tsx');
+            const ects = await import('../modules/ects/ectsMainPage/ectsMainPage.tsx');
             return { Component: ects.default };
           }}
         ></Route>
@@ -142,7 +142,7 @@ const router = createBrowserRouter(
         <Route
           path={paths.addEcts}
           lazy={async () => {
-            const ects = await import('../modules/ects/EctsForm/EctsForm.tsx');
+            const ects = await import('../modules/ects/ectsForm/EctsForm.tsx');
             return { Component: ects.default };
           }}
         ></Route>
