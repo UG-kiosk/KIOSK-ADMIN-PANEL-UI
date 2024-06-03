@@ -1,13 +1,15 @@
 import { useMutation } from '@tanstack/react-query';
 import { createMajorCall } from '../api/api';
 import { CreateMajorRequestDto } from '../types/major';
+import { Messages } from '../../../shared/constants/messages';
+import { toast } from 'react-toastify';
 
 export const useMajorsCall = () => {
   const { mutateAsync: createMajorsMutation } = useMutation({
-    mutationKey: ['vehicleSpecification'],
+    mutationKey: [],
     mutationFn: async (majors: CreateMajorRequestDto[]) => await createMajorCall(majors),
-    // onError: () => Toaster here,
-    // onSuccess: data => Toaster here,
+    onError: () => toast(Messages.ERROR),
+    onSuccess: () => toast(Messages.ADDED),
   });
 
   return { createMajorsMutation };

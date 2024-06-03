@@ -4,9 +4,12 @@ import App from '../App';
 import SideBar from '../components/Sidebar/Sidebar';
 import { SearchParamsProvider } from '../providers/searchParamsProvider';
 import { createStyles } from '../theme/utils';
-import ProfileBar from '../modules/auth/ProfileBar';
+import ProfileBar from '../components/ProfileBar/ProfileBar';
 import Header from '../components/Header/Header';
 import Timer from '../components/Timer/Timer';
+import ProtectedRoute from './ProtectedRoute';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const mainStyles = createStyles({
   main: ({ colors }) => ({ display: 'flex', height: '100%', backgroundColor: colors.whiteSmoke }),
@@ -28,16 +31,19 @@ const router = createBrowserRouter(
       <Route
         element={
           <SearchParamsProvider>
-            <main css={mainStyles.main}>
-              <SideBar />
-              <section css={sectionStyles.section}>
-                <Header>
-                  <Timer />
-                  <ProfileBar />
-                </Header>
-                <Outlet />
-              </section>
-            </main>
+            <ProtectedRoute>
+              <main css={mainStyles.main}>
+                <SideBar />
+                <section css={sectionStyles.section}>
+                  <Header>
+                    <Timer />
+                    <ProfileBar />
+                  </Header>
+                  <Outlet />
+                </section>
+              </main>
+              <ToastContainer />
+            </ProtectedRoute>
           </SearchParamsProvider>
         }
       >
@@ -59,7 +65,7 @@ const router = createBrowserRouter(
         <Route
           path={paths.ects}
           lazy={async () => {
-            const ects = await import('../modules/ects/ectsMainPage/EctsMainPage');
+            const ects = await import('../modules/ects/EctsMainPage/EctsMainPage');
             return { Component: ects.default };
           }}
         ></Route>
@@ -73,35 +79,35 @@ const router = createBrowserRouter(
         <Route
           path={paths.staff}
           lazy={async () => {
-            const staff = await import('../modules/staff/StaffPage');
+            const staff = await import('../modules/staff/StaffPage/StaffPage');
             return { Component: staff.default };
           }}
         ></Route>
         <Route
           path={paths.staffDetails}
           lazy={async () => {
-            const staff = await import('../modules/staff/StaffPage');
+            const staff = await import('../modules/staff/StaffPage/StaffPage');
             return { Component: staff.default };
           }}
         ></Route>
         <Route
           path={paths.staffCreate}
           lazy={async () => {
-            const staff = await import('../modules/staff/StaffForm');
+            const staff = await import('../modules/staff/StaffFormPage/StaffFormPage');
             return { Component: staff.default };
           }}
         ></Route>
         <Route
           path={paths.staffEdit}
           lazy={async () => {
-            const staff = await import('../modules/staff/StaffForm');
+            const staff = await import('../modules/staff/StaffFormPage/StaffFormPage');
             return { Component: staff.default };
           }}
         ></Route>
         <Route
           path={paths.profile}
           lazy={async () => {
-            const profile = await import('../modules/auth/AdminSettingsPage');
+            const profile = await import('../modules/adminSettings/AdminSettingsPage');
             return { Component: profile.default };
           }}
         ></Route>
@@ -112,33 +118,33 @@ const router = createBrowserRouter(
             return { Component: lesson.default };
           }}
         ></Route>
+        <Route
+          path={paths.ects}
+          lazy={async () => {
+            const ects = await import('../modules/ects/EctsMainPage/EctsMainPage');
+            return { Component: ects.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.addEcts}
+          lazy={async () => {
+            const ects = await import('../modules/ects/EctsForm/EctsForm');
+            return { Component: ects.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.staff}
+          lazy={async () => {
+            const staff = await import('../modules/staff/StaffFormPage/StaffFormPage');
+            return { Component: staff.default };
+          }}
+        ></Route>
       </Route>
       <Route
         path={paths.login}
         lazy={async () => {
-          const login = await import('../modules/auth/AdminLoginForm');
+          const login = await import('../modules/login/LoginPage');
           return { Component: login.default };
-        }}
-      ></Route>
-      <Route
-        path={paths.ects}
-        lazy={async () => {
-          const ects = await import('../modules/ects/ectsMainPage/EctsMainPage');
-          return { Component: ects.default };
-        }}
-      ></Route>
-      <Route
-        path={paths.addEcts}
-        lazy={async () => {
-          const ects = await import('../modules/ects/ectsForm/EctsForm');
-          return { Component: ects.default };
-        }}
-      ></Route>
-      <Route
-        path={paths.staff}
-        lazy={async () => {
-          const staff = await import('../modules/staff/StaffForm');
-          return { Component: staff.default };
         }}
       ></Route>
     </>,

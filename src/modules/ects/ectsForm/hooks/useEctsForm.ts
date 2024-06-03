@@ -19,7 +19,7 @@ const ectsSchema = z.object({
   degree: z.string(),
   term: z.coerce.number().min(1).max(6, 'Term should be between 1 and 6'),
   year: z.coerce.string(),
-  recruitmentYear: z.array(z.object({ year: z.coerce.number() })),
+  recruitmentYear: z.array(z.object({ year: z.coerce.number().nonnegative() })),
 });
 
 export type ectsSchema = z.infer<typeof ectsSchema>;

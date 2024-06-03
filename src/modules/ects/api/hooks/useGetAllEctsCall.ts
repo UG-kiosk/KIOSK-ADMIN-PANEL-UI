@@ -6,8 +6,8 @@ import {
   FILTER_PARAM_NAME,
   SORT_PARAM_NAME,
   DEGREE_PARAM_NAME,
-} from '../../ectsMainPage/components/useSearch';
-import { isSort, isDegree } from '../../ectsMainPage/helpers/sortHelpers';
+} from '../../EctsMainPage/sections/useSearch';
+import { isSort, isDegree } from '../../EctsMainPage/helpers/sortHelpers';
 import { fetchEctsSubjects } from '../api';
 import useDeleteEcts from './useDeleteEcts';
 

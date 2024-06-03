@@ -30,7 +30,7 @@ const modules = [
   },
   {
     text: 'Majors',
-    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
     path: paths.createMajor,
   },
   {
