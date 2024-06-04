@@ -1,15 +1,17 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteEctsSubject } from '../api';
+import { Messages } from '../../../../shared/constants/messages';
+import { toast } from 'react-toastify';
 
 const useDeleteEcts = () => {
   const queryClient = useQueryClient();
   const { mutateAsync: deleteEctsSubjectMutation } = useMutation({
-    mutationKey: ['vehicleSpecification'],
+    mutationKey: [],
     mutationFn: async (id: string) => await deleteEctsSubject(id),
-    // onError: () => Toaster here,
+    onError: () => toast(Messages.ERROR),
     onSuccess: () => {
-      console.log('success');
-      return queryClient.invalidateQueries({ queryKey: ['getEctsData'] });
+      queryClient.invalidateQueries({ queryKey: ['getEctsData'] });
+      toast(Messages.DELETED);
     },
   });
 
