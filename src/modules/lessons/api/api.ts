@@ -74,6 +74,27 @@ export const getLessonsDetailsCall = async (id: string): Promise<LessonPlanRespo
   return data;
 };
 
+export const updateLessonsCall = async (id: string, body: LessonPlanRequest): Promise<LessonPlanResponseDTO> => {
+  const updateLessonsUrl = new URL('http://localhost:5202/kiosk-api/lessonsPlans/lesson/' + id);
+
+  const response = await fetch(updateLessonsUrl, {
+    method: HTTP_METHOD.PUT,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: getAuthHeader(),
+    },
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`[updateLessonsUrl]: ${response.status}. ${response.statusText}.`);
+  }
+
+  const data = await response.json();
+
+  return data;
+};
+
 export const deleteLessonsCall = async (id: string): Promise<void> => {
   const deleteLessonsUrl = new URL('http://localhost:5202/kiosk-api/lessonsPlans/' + id);
 

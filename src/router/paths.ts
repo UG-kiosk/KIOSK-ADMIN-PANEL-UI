@@ -14,6 +14,7 @@ export const paths = {
   lessonsCreate: 'lessons/form',
   lessons: 'lessons',
   lessonsDetails: 'lessons/:id',
+  lessonsEdit: 'lessons/edit/:id',
   staff: 'staff',
   staffCreate: 'staff/form',
   staffDetails: 'staff/:id',

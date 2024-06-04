@@ -4,6 +4,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { FormField } from '../../../shared/types/FormField';
 import { DaysOfWeek, LessonPlanRequest, LessonType } from '../types/lessons';
 import { useLessonsCall } from './useLessonsCall';
+import { useEffect } from 'react';
+import useLessonsDetailsPage from './useLessonsDetails';
 
 const lessonsSchema = z.object({
   name: z.string().min(1, 'Title cannot be empty'),
@@ -109,17 +111,47 @@ const defaultLessonsValues: lessonsSchema = {
   info: [],
 };
 
-export const useLessonsForm = () => {
+export const useLessonsForm = (id?: string) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: defaultLessonsValues,
     resolver: zodResolver(lessonsSchema),
     mode: 'onBlur',
   });
-  const { addLessonsMutation } = useLessonsCall();
+  const { addLessonsMutation, updateLessonsMutation } = useLessonsCall();
+  const { lessonsDetailsData } = useLessonsDetailsPage(id ?? '');
+
+  useEffect(() => {
+    if (id) {
+      if (lessonsDetailsData) {
+        const data = {
+          name: lessonsDetailsData.name ?? '',
+          year: lessonsDetailsData.year ?? 0,
+          day: lessonsDetailsData.day ?? DaysOfWeek.Monday,
+          start: lessonsDetailsData.start ?? 0,
+          duration: lessonsDetailsData.duration ?? 0,
+          groups: lessonsDetailsData.groups.map(group => ({
+            group: group,
+          })),
+          teachers: lessonsDetailsData.teachers.map(teacher => ({
+            teacher: teacher,
+          })),
+          class: lessonsDetailsData.class ?? '',
+          subject: lessonsDetailsData.subject ?? '',
+          type: lessonsDetailsData.type ?? LessonType.laboratorium,
+          info: lessonsDetailsData.info.map(info => ({
+            info: info,
+          })),
+        };
+        reset(data);
+      }
+    }
+  }, [id, lessonsDetailsData, reset]);
+
   const onSubmit = (data: lessonsSchema) => {
     const { name, year, day, start, duration, groups, teachers, class: className, subject, type, info } = data;
     const groupArray = groups.map(group => group.group);
@@ -141,6 +173,10 @@ export const useLessonsForm = () => {
       },
       sourceLanguage: 'Pl',
     };
+    if (id) {
+      updateLessonsMutation({ id, lessons: lessonData });
+      return;
+    }
     addLessonsMutation(lessonData);
   };
   return { control, formFields, handleSubmit, onSubmit, errors };

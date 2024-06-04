@@ -6,9 +6,12 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import { Typography } from '../../components/Typography/Typography';
 import { formStyles } from '../../styles/formStyles';
 import { DaysOfWeek, LessonType } from './types/lessons';
+import { useParams } from 'react-router-dom';
 
 const LessonsForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useLessonsForm();
+  const { id } = useParams<{ id?: string }>();
+
+  const { control, formFields, handleSubmit, onSubmit } = useLessonsForm(id);
 
   const {
     fields: groupsFields,

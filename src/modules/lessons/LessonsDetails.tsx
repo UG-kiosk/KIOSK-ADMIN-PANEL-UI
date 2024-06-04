@@ -20,8 +20,9 @@ const LessonsDetails = ({ id }: { id: string }) => {
         deleteAction={() => deleteLessonsMutation(id)}
       >
         <Typography size="lg" weight="bold">
-          {lessonsDetailsData?.subject} - {lessonsDetailsData?.year} year
+          {lessonsDetailsData?.name} - {lessonsDetailsData?.year} year
         </Typography>
+        <Typography size="xs">{lessonsDetailsData?.subject}</Typography>
         <Typography size="xs">{lessonsDetailsData?.teachers}</Typography>
         <Typography size="xs">
           {lessonsDetailsData?.day} at {lessonsDetailsData?.start}, duration {lessonsDetailsData?.duration} hours

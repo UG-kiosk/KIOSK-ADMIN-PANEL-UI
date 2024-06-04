@@ -147,6 +147,13 @@ const router = createBrowserRouter(
             return { Component: lesson.default };
           }}
         ></Route>
+        <Route
+          path={paths.lessonsEdit}
+          lazy={async () => {
+            const lesson = await import('../modules/lessons/LessonsForm');
+            return { Component: lesson.default };
+          }}
+        ></Route>
       </Route>
       <Route
         path={paths.login}
