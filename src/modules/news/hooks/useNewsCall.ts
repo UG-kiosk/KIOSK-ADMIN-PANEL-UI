@@ -26,6 +26,7 @@ export const useNewsCall = () => {
     },
     // onError: () => Toaster here,
     onSuccess: () => {
+      navigate('/news');
       return queryClient.invalidateQueries({ queryKey: ['newsList'] });
 
       // Toaster here

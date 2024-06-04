@@ -13,6 +13,7 @@ export const paths = {
   newsEdit: 'news/edit/:id',
   lessonsCreate: 'lessons/form',
   lessons: 'lessons',
+  lessonsDetails: 'lessons/:id',
   staff: 'staff',
   staffCreate: 'staff/form',
   staffDetails: 'staff/:id',

@@ -35,7 +35,7 @@ const LessonsList = () => {
           return (
             <Card
               key={lesson._id}
-              navigateTo={'/news/' + lesson._id}
+              navigateTo={'/lessons/' + lesson._id}
               displayDetails={true}
               displayDelete={true}
               deleteAction={() => deleteLessonsMutation(lesson._id)}

@@ -1,6 +1,6 @@
 import { HTTP_METHOD } from '../../../shared/constants/httpMethods';
 import { getAuthHeader } from '../../../shared/utils/getAuthHeader';
-import { LessonPlanRequest, LessonResponse } from '../types/lessons';
+import { LessonPlanRequest, LessonPlanResponseDTO, LessonResponse } from '../types/lessons';
 
 export const addLessonsCall = async (body: LessonPlanRequest): Promise<LessonPlanRequest> => {
   const addLessonsUrl = new URL('http://localhost:5202/lessonsPlans');
@@ -45,6 +45,28 @@ export const getLessonsCall = async (
 
   if (!response.ok) {
     throw new Error(`[getLessonsUrl]: ${response.status}. ${response.statusText}.`);
+  }
+
+  const data = await response.json();
+
+  return data;
+};
+
+export const getLessonsDetailsCall = async (id: string): Promise<LessonPlanResponseDTO> => {
+  const language = 'PL';
+  const getLessonsDetailsUrl = new URL(
+    'http://localhost:5202/kiosk-api/lessonsPlans/lesson/' + id + '?language=' + language,
+  );
+
+  const response = await fetch(getLessonsDetailsUrl, {
+    method: HTTP_METHOD.GET,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`[getLessonsDetailsUrl]: ${response.status}. ${response.statusText}.`);
   }
 
   const data = await response.json();
