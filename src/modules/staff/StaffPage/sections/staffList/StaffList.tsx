@@ -1,13 +1,11 @@
-import Card from '../../../../../components/Card/Card';
-import Pagination from '../../../../../components/Pagination/Pagination';
-import usePagination from '../../../../../components/Pagination/hook/usePagination';
-import { Typography } from '../../../../../components/Typography/Typography';
-import useStaffPage from '../../../api/hooks/useStaffPage';
-import { createStyles } from '../../../../../theme/utils';
-import Button from '../../../../../components/Button/Button';
-import { useNavigate } from 'react-router-dom';
-import { useStaffCall } from '../../../api/hooks/useStaffCall';
-import Search from '../search/Search';
+import Card from '../../components/Card/Card';
+import Pagination from '../../components/Pagination/Pagination';
+import usePagination from '../../components/Pagination/hook/usePagination';
+import { Typography } from '../../components/Typography/Typography';
+import Search from './Search';
+import useStaffPage from './hooks/useStaffPage';
+import { createStyles } from '../../theme/utils';
+import { useStaffCall } from './hooks/useStaffCall';
 
 interface AcademicList {
   _id: string;
@@ -21,18 +19,9 @@ const StaffList = () => {
   const {
     actions: { handleGoToPage },
   } = usePagination({ pageSizes: [pagination?.itemsPerPage ?? 30], totalPages: pagination?.totalPages ?? 1 });
-  const navigate = useNavigate();
   const { deleteStaffMutation } = useStaffCall();
   return (
     <div css={staffListStyles.container}>
-      <Button
-        label="Add Academic"
-        onClick={() => {
-          navigate('/staff/form');
-        }}
-        variant="accept"
-        style={{ alignSelf: 'flex-end' }}
-      />
       <Typography size="xl" weight="bold">
         Staff List
       </Typography>

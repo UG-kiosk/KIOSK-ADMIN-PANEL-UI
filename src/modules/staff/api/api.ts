@@ -99,3 +99,19 @@ export const deleteStaffCall = async (id: string): Promise<void> => {
     throw new Error(`[deleteStaffUrl]: ${response.status}. ${response.statusText}.`);
   }
 };
+
+export const scrapeStaffCall = async (): Promise<void> => {
+  const scrapeStaffUrl = new URL('http://localhost:5202/kiosk-api/staff/scrape');
+
+  const response = await fetch(scrapeStaffUrl, {
+    method: HTTP_METHOD.POST,
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: getAuthHeader(),
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`[scrapeStaffUrl]: ${response.status}. ${response.statusText}.`);
+  }
+};
