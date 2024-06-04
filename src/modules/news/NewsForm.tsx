@@ -36,6 +36,7 @@ const NewsForm = () => {
                   <Dropdown
                     defaultValue={name === 'source' ? NewsSource.INF : NewsCategory.NEWS}
                     onValueChange={event => field.onChange(event)}
+                    value={field.value?.toString()}
                   >
                     <Dropdown.Trigger>
                       <Dropdown.Value />

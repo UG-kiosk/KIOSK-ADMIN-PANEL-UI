@@ -3,6 +3,7 @@ import { Typography } from '../../components/Typography/Typography';
 import { createStyles } from '../../theme/utils';
 import useLessonsDetails from './hooks/useLessonsDetails';
 import { useLessonsCall } from './hooks/useLessonsCall';
+import React from 'react';
 
 const LessonsDetails = ({ id }: { id: string }) => {
   const { lessonsDetailsData } = useLessonsDetails(id);
@@ -30,10 +31,26 @@ const LessonsDetails = ({ id }: { id: string }) => {
         <Typography size="xs">Classroom {lessonsDetailsData?.class}</Typography>
         <Typography size="xs">Type {lessonsDetailsData?.type}</Typography>
         {lessonsDetailsData?.groups && lessonsDetailsData?.groups.length > 0 && (
-          <Typography size="xs">Groups {lessonsDetailsData?.groups}</Typography>
+          <Typography size="xs">
+            Groups{' '}
+            {lessonsDetailsData?.groups.map((group, index) => (
+              <React.Fragment key={group}>
+                {group}
+                {index < lessonsDetailsData.groups.length - 1 ? ', ' : ''}
+              </React.Fragment>
+            ))}
+          </Typography>
         )}
         {lessonsDetailsData?.info && lessonsDetailsData?.info.length > 0 && (
-          <Typography size="xs">Info {lessonsDetailsData?.info}</Typography>
+          <Typography size="xs">
+            Info{' '}
+            {lessonsDetailsData?.info.map((info, index) => (
+              <React.Fragment key={info}>
+                {info}
+                {index < lessonsDetailsData.info.length - 1 ? ', ' : ''}
+              </React.Fragment>
+            ))}
+          </Typography>
         )}
       </Card>
     </div>

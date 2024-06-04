@@ -54,6 +54,7 @@ const LessonsForm = () => {
                   <Dropdown
                     defaultValue={name === 'day' ? DaysOfWeek.Monday : LessonType.laboratorium}
                     onValueChange={event => field.onChange(event)}
+                    value={field.value?.toString()}
                   >
                     <Dropdown.Trigger>
                       <Dropdown.Value />
