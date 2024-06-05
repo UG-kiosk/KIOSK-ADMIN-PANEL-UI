@@ -1,11 +1,11 @@
-import usePagination from "../../../../../components/Pagination/hook/usePagination";
-import { Typography } from "../../../../../components/Typography/Typography";
-import { useStaffCall } from "../../../api/hooks/useStaffCall";
-import useStaffPage from "../../../api/hooks/useStaffPage";
-import Card from "../../../../../components/Card/Card";
-import Search from "../search/Search";
-import Pagination from "../../../../../components/Pagination/Pagination";
-import { createStyles } from "../../../../../theme/utils";
+import usePagination from '../../../../../components/Pagination/hook/usePagination';
+import { Typography } from '../../../../../components/Typography/Typography';
+import { useStaffCall } from '../../../api/hooks/useStaffCall';
+import useStaffPage from '../../../api/hooks/useStaffPage';
+import Card from '../../../../../components/Card/Card';
+import Search from '../search/Search';
+import Pagination from '../../../../../components/Pagination/Pagination';
+import { createStyles } from '../../../../../theme/utils';
 
 interface AcademicList {
   _id: string;
