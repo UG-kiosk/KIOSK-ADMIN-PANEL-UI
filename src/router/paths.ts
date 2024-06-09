@@ -15,6 +15,7 @@ export const paths = {
   newsEdit: 'news/edit/:id',
   lessons: 'lessons',
   staff: 'staff',
+  staffScraper: 'staff/scraper',
   staffCreate: 'staff/form',
   staffDetails: 'staff/:id',
   staffEdit: 'staff/edit/:id',
