@@ -56,6 +56,27 @@ const router = createBrowserRouter(
           }}
         ></Route>
         <Route
+          path={paths.majors}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsPage/MajorsPage.tsx');
+            return { Component: pageModule.MajorsPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.majorDetails}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsPage/MajorsPage.tsx');
+            return { Component: pageModule.MajorsPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.majorsEdit}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsForm/MajorsForm');
+            return { Component: pageModule.MajorsForm };
+          }}
+        ></Route>
+        <Route
           path={paths.createMajor}
           lazy={async () => {
             const pageModule = await import('../modules/majors/majorsForm/MajorsForm');

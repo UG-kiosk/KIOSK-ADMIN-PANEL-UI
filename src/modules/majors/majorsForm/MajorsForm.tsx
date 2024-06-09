@@ -5,9 +5,11 @@ import Button from '../../../components/Button/Button';
 import { formStyles } from '../../../styles/formStyles';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { useParams } from 'react-router-dom';
 
 export const MajorsForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useMajorsForm();
+  const { id } = useParams<{ id?: string }>();
+  const { control, formFields, handleSubmit, onSubmit } = useMajorsForm(id || '');
 
   return (
     <section css={formStyles.section}>

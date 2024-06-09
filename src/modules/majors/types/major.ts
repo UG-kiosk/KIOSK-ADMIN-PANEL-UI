@@ -23,3 +23,12 @@ export interface CreateMajorRequestDto {
   url?: string;
   majorDetails: MajorDetails;
 }
+
+export interface Major {
+  _id: string;
+  degree: Degree;
+  sourceLanguage: Language;
+  url?: string;
+  name: string;
+  content: string;
+}
