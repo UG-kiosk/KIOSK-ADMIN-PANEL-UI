@@ -3,6 +3,6 @@ import { Language } from '../../../shared/constants/language';
 
 export interface GetMajorsRequestParams {
   language: Language;
-  degree: Degree;
+  degree?: Degree;
   name: string;
 }
