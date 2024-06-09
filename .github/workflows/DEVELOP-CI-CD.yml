@@ -53,6 +53,7 @@ jobs:
     env:
       image_tag: ${{vars.DOCKER_IMAGE_OWNER}}/kiosk-admin-panel-ui-dev:${GITHUB_SHA}
       image_latest: ${{vars.DOCKER_IMAGE_OWNER}}/kiosk-admin-panel-ui-dev:latest
+      gateway_url: 'https://ug-kiosk-apim-dev.azure-api.net'
 
     steps:
       - uses: actions/checkout@v4
@@ -65,7 +66,7 @@ jobs:
 
       - name: Build Docker Images
         run: |
-          docker build -t ${{ env.image_tag }} .
+          docker build --build-arg="VITE_GATEWAY_URL=${{ env.gateway_url }}" -t ${{ env.image_tag }} .
           docker tag ${{ env.image_tag }} ${{ env.image_latest }}
 
       - name: Push Docker Images

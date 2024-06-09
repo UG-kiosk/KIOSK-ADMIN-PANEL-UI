@@ -32,7 +32,7 @@ const modules = [
   {
     text: 'Majors',
     icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
-    path: paths.createMajor,
+    path: paths.majors,
   },
   {
     text: 'Lessons',
@@ -46,6 +46,11 @@ const scrapers = [
     text: 'Staff',
     icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.staffScraper,
+  },
+  {
+    text: 'Majors',
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
+    path: paths.majorsScraper,
   },
 ];
 
