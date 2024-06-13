@@ -56,6 +56,27 @@ const router = createBrowserRouter(
           }}
         ></Route>
         <Route
+          path={paths.majors}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsPage/MajorsPage.tsx');
+            return { Component: pageModule.MajorsPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.majorDetails}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsPage/MajorsPage.tsx');
+            return { Component: pageModule.MajorsPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.majorsEdit}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsForm/MajorsForm');
+            return { Component: pageModule.MajorsForm };
+          }}
+        ></Route>
+        <Route
           path={paths.createMajor}
           lazy={async () => {
             const pageModule = await import('../modules/majors/majorsForm/MajorsForm');
@@ -95,6 +116,13 @@ const router = createBrowserRouter(
           lazy={async () => {
             const news = await import('../modules/news/NewsDetailsPage');
             return { Component: news.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.staffScraper}
+          lazy={async () => {
+            const staff = await import('../modules/staff/StaffScraper');
+            return { Component: staff.default };
           }}
         ></Route>
         <Route
