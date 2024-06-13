@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLessonsDetailsCall } from '../api/api';
+import { getLessonsDetailsCall } from '../Api/api';
 
 const useLessonsDetailsPage = (id: string) => {
   const { data: lessonsDetailsData } = useQuery({

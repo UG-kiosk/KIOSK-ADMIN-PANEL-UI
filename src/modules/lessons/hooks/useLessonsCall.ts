@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addLessonsCall, deleteLessonsCall, updateLessonsCall } from '../api/api';
+import { addLessonsCall, deleteLessonsCall, updateLessonsCall } from '../Api/api';
 import { LessonPlanRequest } from '../types/lessons';
 import { useNavigate } from 'react-router-dom';
 import { useRefreshTokenCall } from '../../auth/useRefreshTokenCall';
