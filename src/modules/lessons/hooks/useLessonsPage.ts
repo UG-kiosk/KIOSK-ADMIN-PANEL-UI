@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getLessonsCall } from '../Api/api';
+import { getLessonsCall } from '../api/api';
 import { useSearchParamsContext } from '../../../providers/searchParamsProvider';
 
 const useLessonsPage = () => {
