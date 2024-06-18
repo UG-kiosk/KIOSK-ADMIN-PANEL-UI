@@ -8,4 +8,5 @@ export const paths = {
   news: 'news',
   staff: 'staff',
   lessons: 'lessons',
+  events: 'events',
 };

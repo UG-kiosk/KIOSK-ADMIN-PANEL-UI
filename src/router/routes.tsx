@@ -90,6 +90,13 @@ const router = createBrowserRouter(
             return { Component: lesson.default };
           }}
         ></Route>
+        <Route
+          path={paths.events}
+          lazy={async () => {
+            const events = await import('../modules/events/eventsForm/EventsForm');
+            return { Component: events.default };
+          }}
+        ></Route>
       </Route>
       <Route
         path={paths.login}
