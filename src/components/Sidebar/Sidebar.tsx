@@ -13,6 +13,7 @@ import MajorIcon from '../../assets/icons/MajorIcon';
 import LessonsIcon from '../../assets/icons/LessonsIcon';
 import { text } from 'stream/consumers';
 import EventsIcon from '../../assets/icons/EventsIcon';
+import ScraperIcon from '../../assets/icons/ScraperIcon';
 
 const modules = [
   {
@@ -32,8 +33,8 @@ const modules = [
   },
   {
     text: 'Majors',
-    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
-    path: paths.createMajor,
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
+    path: paths.majors,
   },
   {
     text: 'Lessons',
@@ -44,6 +45,32 @@ const modules = [
     text: 'Events',
     icon: <EventsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.events,
+  },
+];
+
+const scrapers = [
+  {
+    text: 'Staff',
+    icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.staffScraper,
+  },
+  {
+    text: 'Majors',
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
+    path: paths.majorsScraper,
+  },
+];
+
+const scrapers = [
+  {
+    text: 'Staff',
+    icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.staffScraper,
+  },
+  {
+    text: 'Majors',
+    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
+    path: paths.majorsScraper,
   },
 ];
 
@@ -67,6 +94,30 @@ const SideBar = () => {
             </Accordion.Trigger>
             <Accordion.Content>
               {modules.map(({ icon, text, path }) => (
+                <Typography
+                  key={text}
+                  styles={[sideBarStyles.accordionTypography, sideBarStyles.onHover]}
+                  weight="bold"
+                  onClick={() => navigate(path)}
+                >
+                  {icon}
+                  {text}
+                </Typography>
+              ))}
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
+        <Accordion.Root type="single" defaultValue="item-2" collapsible>
+          <Accordion.Item value="item-2">
+            <Accordion.Trigger css={[sideBarStyles.onHover, sideBarStyles.accordionTrigger]}>
+              <Typography styles={sideBarStyles.accordionTypography} weight="bold">
+                <ScraperIcon size={35} />
+                scrapers
+              </Typography>
+              <Angledown size={30} />
+            </Accordion.Trigger>
+            <Accordion.Content>
+              {scrapers.map(({ icon, text, path }) => (
                 <Typography
                   key={text}
                   styles={[sideBarStyles.accordionTypography, sideBarStyles.onHover]}

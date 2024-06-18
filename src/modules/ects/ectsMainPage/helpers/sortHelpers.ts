@@ -1,5 +1,5 @@
 import { Degree, degreSchema } from '../../../../shared/constants/degree';
-import { SortDirection, sortDirectionSchema } from '../../types/sort';
+import { SortDirection, sortDirectionSchema } from '../../../staff/types/sort';
 
 export const setSort = (sortDirection: SortDirection) => (sortDirection === 'Asc' ? 'Dsc' : 'Asc');
 

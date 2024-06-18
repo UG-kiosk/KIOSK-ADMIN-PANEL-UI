@@ -4,6 +4,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { CreateScrapedMajorsFormTypes } from './types/createScrapedMajorsFormTypes';
 import { useMajors } from '../hooks/useMajors';
 import { CreateMajorRequest } from '../types/createMajorRequest';
+import { createStyles } from '../../../theme/utils';
+import Button from '../../../components/Button/Button';
 
 export const MajorsScraperPage = () => {
   const { scrapeMajors, isLoading: isLoadingScraper, error: scraperError } = useScrapeMajors();
@@ -43,8 +45,16 @@ export const MajorsScraperPage = () => {
   return (
     <FormProvider {...formMethods}>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <textarea {...formMethods.register('majors')}></textarea>
+        <textarea css={scraperPageStyles.textarea} {...formMethods.register('majors')}></textarea>
+        <Button label="Submit" type="submit" />
       </form>
     </FormProvider>
   );
 };
+
+const scraperPageStyles = createStyles({
+  textarea: () => ({
+    width: '100%',
+    minHeight: 300,
+  }),
+});

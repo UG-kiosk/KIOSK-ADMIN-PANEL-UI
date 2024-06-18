@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { CreateMajorRequest } from '../types/createMajorRequest';
 import axios from 'axios';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 
 export const useMajors = () => {
   const [isLoading, setIsLoading] = useState(true);
