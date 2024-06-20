@@ -205,7 +205,28 @@ const router = createBrowserRouter(
         <Route
           path={paths.events}
           lazy={async () => {
-            const events = await import('../modules/events/eventsForm/EventsForm');
+            const events = await import('../modules/events/EventsList.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.eventsCreate}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsForm.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.eventsDetails}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsForm.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.eventsEdit}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsForm.tsx');
             return { Component: events.default };
           }}
         ></Route>

@@ -11,7 +11,6 @@ import NewsIcon from '../../assets/icons/NewsIcon';
 import StaffIcon from '../../assets/icons/StaffIcon';
 import MajorIcon from '../../assets/icons/MajorIcon';
 import LessonsIcon from '../../assets/icons/LessonsIcon';
-import { text } from 'stream/consumers';
 import EventsIcon from '../../assets/icons/EventsIcon';
 import ScraperIcon from '../../assets/icons/ScraperIcon';
 
@@ -45,19 +44,6 @@ const modules = [
     text: 'Events',
     icon: <EventsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.events,
-  },
-];
-
-const scrapers = [
-  {
-    text: 'Staff',
-    icon: <StaffIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
-    path: paths.staffScraper,
-  },
-  {
-    text: 'Majors',
-    icon: <MajorIcon size={35} styles={({ colors }) => ({ color: colors.textGray, fill: colors.textGray })} />,
-    path: paths.majorsScraper,
   },
 ];
 

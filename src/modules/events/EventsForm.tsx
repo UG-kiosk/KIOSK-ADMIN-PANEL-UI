@@ -1,13 +1,15 @@
+import { useEventForm } from './hooks/useEventForm';
 import { Controller } from 'react-hook-form';
-import FormField from '../../../components/FormField/FormField';
-import { useEventForm } from './hooks/useEventForm'; // Zmieniamy import na funkcję obsługującą zdarzenia
-import Button from '../../../components/Button/Button';
-import { formStyles } from '../../../styles/formStyles';
+import FormField from '../../components/FormField/FormField';
+import Button from '../../components/Button/Button';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import { formStyles } from '../../styles/formStyles';
+import { useParams } from 'react-router-dom';
 
-export const EventsForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useEventForm(); // Zmieniamy hook formularza na obsługujący zdarzenia
+const EventsForm = () => {
+  const { id } = useParams<{ id?: string }>();
+  const { control, formFields, handleSubmit, onSubmit } = useEventForm(id || '');
 
   return (
     <section css={formStyles.section}>
@@ -29,7 +31,7 @@ export const EventsForm = () => {
                       }}
                       data={field.value}
                       config={{
-                        placeholder: 'Event description content',
+                        placeholder: 'Event content',
                         toolbar: [
                           'heading',
                           'bold',
@@ -50,9 +52,8 @@ export const EventsForm = () => {
                     inputProps={{
                       ...field,
                       placeholder,
-                      type: type,
-                      onChange: (event: React.ChangeEvent<HTMLInputElement>) => field.onChange(event.target.value),
-                      value: field.value as string, // Dodajemy tę linię, aby upewnić się, że wartość jest typu string
+                      type,
+                      onChange: event => field.onChange(event.target.value),
                     }}
                     isRequired={isRequired}
                     errorMessage={error?.message}
@@ -65,9 +66,41 @@ export const EventsForm = () => {
               }
             />
           ))}
-          <Button label="Submit" type="submit" />
+          {/* {urlFields.map((_, urlIndex) => (
+            <div key={urlIndex} css={formStyles.nestedFormField}>
+              <div>
+                <Controller
+                  control={control}
+                  name={`url.${urlIndex}`}
+                  render={({ field }) => (
+                    <FormField
+                      name={field.name}
+                      label="URL"
+                      inputProps={{
+                        ...field,
+                        placeholder: 'Enter event URL',
+                        onChange: event => field.onChange(event.target.value),
+                      }}
+                      inputType="base"
+                    />
+                  )}
+                />
+              </div>
+              <Button
+                label="Remove URL"
+                type="button"
+                variant="secondary"
+                onClick={() => remove(urlIndex)}
+                css={formStyles.removeButton}
+              />
+            </div>
+          ))}
+          <Button label="Add another URL" type="button" variant="secondary" onClick={() => append({ url: '' })} /> */}
+          <Button label="Submit" type="submit" onClick={() => handleSubmit(onSubmit)} />
         </fieldset>
       </form>
     </section>
   );
 };
+
+export default EventsForm;

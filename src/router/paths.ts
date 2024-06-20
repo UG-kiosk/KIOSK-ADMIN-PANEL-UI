@@ -23,4 +23,7 @@ export const paths = {
   staffDetails: 'staff/:id',
   staffEdit: 'staff/edit/:id',
   events: 'events',
+  eventsCreate: 'events/form',
+  eventsDetails: 'events/:id',
+  eventsEdit: 'events/edit/:id',
 };
