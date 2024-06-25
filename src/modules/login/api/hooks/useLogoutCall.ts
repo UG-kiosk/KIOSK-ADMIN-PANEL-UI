@@ -3,6 +3,9 @@ import { AuthContext } from '../../../../providers/context/AuthContextProvider';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../api';
+import { toast } from 'react-toastify';
+import { Messages } from '../../../../shared/constants/messages';
+import { errorToastConfig } from '../../../../shared/constants/toastTypes';
 
 export const useLogoutCall = () => {
   const authContext = useContext(AuthContext);
@@ -12,7 +15,7 @@ export const useLogoutCall = () => {
   const { mutateAsync: logoutMutation } = useMutation({
     mutationKey: [],
     mutationFn: async () => await logout(),
-    onError: () => {}, // TO DO
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       setUser({ username: null, accessToken: null });
       localStorage.removeItem('token');

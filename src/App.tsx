@@ -1,44 +1,12 @@
-import Modal from './components/Modal/Modal';
-import Tile from './components/Tile/Tile';
-import { EctsSubject } from './modules/ects/types/ectsSubject';
-
-const exampleEctsSubject: EctsSubject = {
-  subject: 'Mathematics',
-  lectureHours: 30,
-  recitationHours: 10,
-  labsHours: 20,
-  pass: 'Passing grade',
-  ects: 5,
-  major: 'Computer Science',
-  degree: 'Bachelor',
-  term: 1,
-  year: '2022',
-  recruitmentYear: [2021, 2022],
-  speciality: 'Advanced Calculus',
-};
-
-const verylongName: EctsSubject = {
-  subject:
-    'MathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematicsMathematics',
-  lectureHours: 30,
-  recitationHours: 10,
-  labsHours: 20,
-  pass: 'Passing grade',
-  ects: 5,
-  major: 'Computer Science',
-  degree: 'Bachelor',
-  term: 1,
-  year: '2022',
-  recruitmentYear: [2021, 2022],
-  speciality: 'Advanced Calculus',
-};
+import Loader from './components/Loader/Loader';
+import { Typography } from './components/Typography/Typography';
 
 function App() {
   return (
     <div css={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-      <Modal />
-      <Tile object={exampleEctsSubject} arrayOfKey={['subject', 'term']} />
-      <Tile object={verylongName} arrayOfKey={['subject', 'term']} />
+      <Typography size="3xl" weight="bold">
+        Hello, It's Admin Panel !!!! 🐐
+      </Typography>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { addNewsCall, deleteNewsCall, updateNewsCall } from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Messages } from '../../../shared/constants/messages';
+import { errorToastConfig, successToastConfig } from '../../../shared/constants/toastTypes';
 
 export const useNewsCall = () => {
   // const { ensureValidAccessToken } = useRefreshTokenCall();
@@ -13,22 +14,24 @@ export const useNewsCall = () => {
   const { mutateAsync: addNewsMutation } = useMutation({
     mutationKey: ['vehicleSpecification'],
     mutationFn: async (news: NewsRequest) => await addNewsCall(news),
-    onError: () => toast(Messages.ERROR),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       navigate('/news');
       queryClient.invalidateQueries({ queryKey: ['newsList'] });
-      toast(Messages.ADDED);
+      toast.success(Messages.ADDED, successToastConfig);
     },
   });
 
   const { mutateAsync: deleteNewsMutation } = useMutation({
-    mutationKey: ['vehicleSpecification'],
+    mutationKey: [],
     mutationFn: async (id: string) => {
       // await ensureValidAccessToken();
       return await deleteNewsCall(id);
     },
-    // onError: () => Toaster here,
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
+      toast.success(Messages.DELETED, successToastConfig);
+
       return queryClient.invalidateQueries({ queryKey: ['newsList'] });
 
       // Toaster here
@@ -41,10 +44,10 @@ export const useNewsCall = () => {
       // await ensureValidAccessToken();
       return await updateNewsCall(id, news);
     },
-    // onError: () => Toaster here,
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: data => {
       navigate('/news/' + data._id);
-      // Toaster here
+      toast.success(Messages.UPDATED, successToastConfig);
     },
   });
 
