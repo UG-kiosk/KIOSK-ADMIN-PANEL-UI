@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { MajorScraperResponseDto } from '../../types/major';
 import axios from 'axios';
-import { environment } from '../../../../environment';
+import { environment } from '../../../../environments/environment';
 
 export const useScrapeMajors = () => {
   const [isLoading, setIsLoading] = useState(true);

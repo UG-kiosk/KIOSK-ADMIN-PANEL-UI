@@ -1,12 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { z } from 'zod';
 import { Degree } from '../../../../shared/constants/degree';
 import { Language } from '../../../../shared/constants/language';
 import { useMajorsCall } from '../../hooks/useMajorsCall';
 import { CreateMajorRequestDto, MajorFormValues } from '../../types/major';
 import { FormField } from '../../../../shared/types/FormField';
+import { useMajorPage } from '../../hooks/useMajorPage';
 
 const majorSchema = z.object({
   name: z.string().trim().min(3, 'Name must be at least 3 characters long'),
@@ -74,18 +75,33 @@ export interface FormValues {
   url: string;
 }
 
-export const useMajorsForm = () => {
+export const useMajorsForm = (id: string) => {
+  const { updateMajorMutation, createMajorsMutation } = useMajorsCall();
+  const { majorData } = useMajorPage(id ?? '');
+
   const {
     control,
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
   } = useForm<FormValues>({
     defaultValues: defaltMajorValues,
     resolver: zodResolver(majorSchema),
     mode: 'onBlur',
   });
-  const { createMajorsMutation } = useMajorsCall();
+
+  useEffect(() => {
+    if (id && majorData) {
+      const data = {
+        name: majorData.name ?? '',
+        content: majorData.content ?? '',
+        degree: majorData.degree ?? '',
+        url: majorData.url ?? '',
+      };
+      reset(data);
+    }
+  }, [id, majorData, reset]);
 
   const onSubmit = useCallback(
     (data: MajorFormValues) => {
@@ -101,9 +117,14 @@ export const useMajorsForm = () => {
         },
       };
 
+      if (id) {
+        updateMajorMutation({ id, major: majorDto });
+        return;
+      }
+
       createMajorsMutation([majorDto]);
     },
-    [createMajorsMutation],
+    [createMajorsMutation, id, updateMajorMutation],
   );
 
   return { control, formFields, handleSubmit, onSubmit, errors, getValues };

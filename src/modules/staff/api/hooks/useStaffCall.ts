@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { addStaffCall, updateStaffCall, deleteStaffCall } from '../api';
+import { addStaffCall, updateStaffCall, deleteStaffCall, scrapeStaffCall } from '../api';
 import { Academic } from '../../types/Academic';
 import { useRefreshTokenCall } from '../../../auth/useRefreshTokenCall';
 import { useNavigate } from 'react-router-dom';
@@ -49,5 +49,18 @@ export const useStaffCall = () => {
     },
   });
 
-  return { addStaffMutation, updateStaffMemberMutation, deleteStaffMutation };
+  const { mutateAsync: scrapeStaffMutation } = useMutation({
+    mutationKey: ['vehicleSpecification'],
+    mutationFn: async () => {
+      await ensureValidAccessToken();
+      return await scrapeStaffCall();
+    },
+    // onError: () => Toaster here,
+    onSuccess: () => {
+      navigate('/staff');
+      // Toaster here
+    },
+  });
+
+  return { addStaffMutation, updateStaffMemberMutation, deleteStaffMutation, scrapeStaffMutation };
 };

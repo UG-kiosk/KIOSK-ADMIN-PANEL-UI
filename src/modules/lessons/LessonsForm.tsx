@@ -1,14 +1,17 @@
 import { useLessonsForm } from './hooks/useLessonsForm';
 import { Controller, useFieldArray } from 'react-hook-form';
-import FormField from '../../../components/FormField/FormField';
-import Button from '../../../components/Button/Button';
-import Dropdown from '../../../components/Dropdown/Dropdown';
-import { Typography } from '../../../components/Typography/Typography';
-import { formStyles } from '../../../styles/formStyles';
+import FormField from '../../components/FormField/FormField';
+import Button from '../../components/Button/Button';
+import Dropdown from '../../components/Dropdown/Dropdown';
+import { Typography } from '../../components/Typography/Typography';
+import { formStyles } from '../../styles/formStyles';
 import { DaysOfWeek, LessonType } from './types/lessons';
+import { useParams } from 'react-router-dom';
 
 const LessonsForm = () => {
-  const { control, formFields, handleSubmit, onSubmit } = useLessonsForm();
+  const { id } = useParams<{ id?: string }>();
+
+  const { control, formFields, handleSubmit, onSubmit } = useLessonsForm(id);
 
   const {
     fields: groupsFields,
@@ -51,6 +54,7 @@ const LessonsForm = () => {
                   <Dropdown
                     defaultValue={name === 'day' ? DaysOfWeek.Monday : LessonType.laboratorium}
                     onValueChange={event => field.onChange(event)}
+                    value={field.value?.toString()}
                   >
                     <Dropdown.Trigger>
                       <Dropdown.Value />

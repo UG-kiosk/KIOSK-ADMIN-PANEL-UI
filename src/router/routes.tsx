@@ -17,6 +17,27 @@ const router = createBrowserRouter(
           }}
         ></Route>
         <Route
+          path={paths.majors}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsPage/MajorsPage.tsx');
+            return { Component: pageModule.MajorsPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.majorDetails}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsPage/MajorsPage.tsx');
+            return { Component: pageModule.MajorsPage };
+          }}
+        ></Route>
+        <Route
+          path={paths.majorsEdit}
+          lazy={async () => {
+            const pageModule = await import('../modules/majors/majorsForm/MajorsForm');
+            return { Component: pageModule.MajorsForm };
+          }}
+        ></Route>
+        <Route
           path={paths.createMajor}
           lazy={async () => {
             const pageModule = await import('../modules/majors/majorsForm/MajorsForm');
@@ -59,6 +80,13 @@ const router = createBrowserRouter(
           }}
         ></Route>
         <Route
+          path={paths.staffScraper}
+          lazy={async () => {
+            const staff = await import('../modules/staff/StaffScraper');
+            return { Component: staff.default };
+          }}
+        ></Route>
+        <Route
           path={paths.staff}
           lazy={async () => {
             const staff = await import('../modules/staff/StaffPage/StaffPage');
@@ -94,9 +122,30 @@ const router = createBrowserRouter(
           }}
         ></Route>
         <Route
+          path={paths.lessonsCreate}
+          lazy={async () => {
+            const lesson = await import('../modules/lessons/LessonsForm');
+            return { Component: lesson.default };
+          }}
+        ></Route>
+        <Route
           path={paths.lessons}
           lazy={async () => {
-            const lesson = await import('../modules/lessons/lessonsForm/LessonsForm');
+            const lesson = await import('../modules/lessons/LessonsList');
+            return { Component: lesson.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.lessonsDetails}
+          lazy={async () => {
+            const lesson = await import('../modules/lessons/LessonsDetailsPage');
+            return { Component: lesson.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.lessonsEdit}
+          lazy={async () => {
+            const lesson = await import('../modules/lessons/LessonsForm');
             return { Component: lesson.default };
           }}
         ></Route>
