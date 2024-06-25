@@ -5,6 +5,7 @@ import { useRefreshTokenCall } from '../../../auth/useRefreshTokenCall';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Messages } from '../../../../shared/constants/messages';
+import { errorToastConfig, successToastConfig } from '../../../../shared/constants/toastTypes';
 
 export const useStaffCall = () => {
   const { ensureValidAccessToken } = useRefreshTokenCall();
@@ -15,10 +16,10 @@ export const useStaffCall = () => {
       await ensureValidAccessToken();
       return await addStaffCall(academic);
     },
-    onError: () => toast(Messages.ERROR),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       navigate('/staff');
-      toast(Messages.ADDED);
+      toast.success(Messages.ADDED, successToastConfig);
     },
   });
 
@@ -28,10 +29,10 @@ export const useStaffCall = () => {
       await ensureValidAccessToken();
       return await updateStaffCall(id, academic);
     },
-    // onError: () => Toaster here,
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: data => {
       navigate('/staff/' + data._id);
-      // Toaster here
+      toast.success(Messages.UPDATED, successToastConfig);
     },
   });
 
@@ -41,10 +42,10 @@ export const useStaffCall = () => {
       await ensureValidAccessToken();
       return await deleteStaffCall(id);
     },
-    // onError: () => Toaster here,
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       navigate('/staff');
-      // Toaster here
+      toast.success(Messages.DELETED, successToastConfig);
     },
   });
 

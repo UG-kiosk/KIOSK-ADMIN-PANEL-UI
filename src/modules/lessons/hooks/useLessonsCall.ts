@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRefreshTokenCall } from '../../auth/useRefreshTokenCall';
 import { toast } from 'react-toastify';
 import { Messages } from '../../../shared/constants/messages';
+import { errorToastConfig, successToastConfig } from '../../../shared/constants/toastTypes';
 
 export const useLessonsCall = () => {
   const { ensureValidAccessToken } = useRefreshTokenCall();
@@ -17,11 +18,11 @@ export const useLessonsCall = () => {
       await ensureValidAccessToken();
       return await addLessonsCall(lessons);
     },
-    onError: () => toast(Messages.ERROR),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       navigate('/lessons');
       queryClient.invalidateQueries({ queryKey: ['lessonsList'] });
-      toast(Messages.ADDED);
+      toast.success(Messages.ADDED, successToastConfig);
     },
   });
 
@@ -31,10 +32,10 @@ export const useLessonsCall = () => {
       await ensureValidAccessToken();
       return await deleteLessonsCall(id);
     },
-    onError: () => toast(Messages.ERROR),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       navigate('/lessons');
-      toast(Messages.DELETED);
+      toast.success(Messages.DELETED, successToastConfig);
       return queryClient.invalidateQueries({ queryKey: ['lessonsList'] });
     },
   });
@@ -45,10 +46,10 @@ export const useLessonsCall = () => {
       await ensureValidAccessToken();
       return await updateLessonsCall(id, lessons);
     },
-    onError: () => toast(Messages.ERROR),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: data => {
       navigate('/lessons/' + data._id);
-      toast(Messages.UPDATED);
+      toast.success(Messages.UPDATED, successToastConfig);
 
       return queryClient.invalidateQueries({ queryKey: ['lessonsDetails'] });
     },

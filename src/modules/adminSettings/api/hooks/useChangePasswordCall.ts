@@ -3,6 +3,7 @@ import { useRefreshTokenCall } from '../../../auth/useRefreshTokenCall';
 import { updatePassword } from '../api';
 import { toast } from 'react-toastify';
 import { Messages } from '../../../../shared/constants/messages';
+import { errorToastConfig, successToastConfig } from '../../../../shared/constants/toastTypes';
 
 export const useChangePasswordCall = () => {
   const { ensureValidAccessToken } = useRefreshTokenCall();
@@ -12,8 +13,8 @@ export const useChangePasswordCall = () => {
       await ensureValidAccessToken();
       return await updatePassword(credentials);
     },
-    onError: () => toast(Messages.ERROR),
-    onSuccess: () => toast(Messages.ADDED),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
+    onSuccess: () => toast.success(Messages.ADDED, successToastConfig),
   });
 
   return { changePasswordMutation };
