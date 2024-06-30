@@ -163,6 +163,34 @@ const router = createBrowserRouter(
             return { Component: staff.default };
           }}
         ></Route>
+        <Route
+          path={paths.events}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsList.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.eventsCreate}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsForm.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.eventsDetails}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsForm.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
+        <Route
+          path={paths.eventsEdit}
+          lazy={async () => {
+            const events = await import('../modules/events/EventsForm.tsx');
+            return { Component: events.default };
+          }}
+        ></Route>
       </Route>
       <Route
         path={paths.login}

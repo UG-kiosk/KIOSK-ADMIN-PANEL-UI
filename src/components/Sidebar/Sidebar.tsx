@@ -11,6 +11,7 @@ import NewsIcon from '../../assets/icons/NewsIcon';
 import StaffIcon from '../../assets/icons/StaffIcon';
 import MajorIcon from '../../assets/icons/MajorIcon';
 import LessonsIcon from '../../assets/icons/LessonsIcon';
+import EventsIcon from '../../assets/icons/EventsIcon';
 import ScraperIcon from '../../assets/icons/ScraperIcon';
 
 const modules = [
@@ -38,6 +39,11 @@ const modules = [
     text: 'Lessons',
     icon: <LessonsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
     path: paths.lessons,
+  },
+  {
+    text: 'Events',
+    icon: <EventsIcon size={35} styles={({ colors }) => ({ color: colors.textGray })} />,
+    path: paths.events,
   },
 ];
 
