@@ -4,15 +4,16 @@ import { EctsSubject } from '../../types/ectsSubject';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Messages } from '../../../../shared/constants/messages';
+import { errorToastConfig, successToastConfig } from '../../../../shared/constants/toastTypes';
 
 const useAddEctsCall = () => {
   const navigate = useNavigate();
   const { mutateAsync: addEctsSubjectMutation } = useMutation({
     mutationFn: async (ectsSubject: EctsSubject) => await addEctsSubjectCall(ectsSubject),
-    onError: () => toast(Messages.ERROR),
+    onError: () => toast.error(Messages.ERROR, errorToastConfig),
     onSuccess: () => {
       navigate(-1);
-      toast(Messages.ADDED);
+      toast.success(Messages.ADDED, successToastConfig);
     },
   });
 

@@ -1,52 +1,13 @@
-import { createBrowserRouter, createRoutesFromElements, Outlet, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { paths } from './paths';
 import App from '../App';
-import SideBar from '../components/Sidebar/Sidebar';
-import { SearchParamsProvider } from '../providers/searchParamsProvider';
-import { createStyles } from '../theme/utils';
-import ProfileBar from '../components/ProfileBar/ProfileBar';
-import Header from '../components/Header/Header';
-import Timer from '../components/Timer/Timer';
-import ProtectedRoute from './ProtectedRoute';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const mainStyles = createStyles({
-  main: ({ colors }) => ({ display: 'flex', height: '100%', backgroundColor: colors.whiteSmoke }),
-});
-
-const sectionStyles = createStyles({
-  section: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    // padding: '40px 50px',
-    margin: '40px 50px',
-  },
-});
+import RootPage from '../RootPage.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route
-        element={
-          <SearchParamsProvider>
-            <ProtectedRoute>
-              <main css={mainStyles.main}>
-                <SideBar />
-                <section css={sectionStyles.section}>
-                  <Header>
-                    <Timer />
-                    <ProfileBar />
-                  </Header>
-                  <Outlet />
-                </section>
-              </main>
-              <ToastContainer />
-            </ProtectedRoute>
-          </SearchParamsProvider>
-        }
-      >
+      <Route element={<RootPage />}>
         <Route path={paths.root} element={<App />}></Route>
         <Route
           path={paths.majorsScraper}

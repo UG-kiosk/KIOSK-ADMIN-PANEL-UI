@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json ./
 ARG VITE_GATEWAY_URL
 ENV VITE_GATEWAY_URL=$VITE_GATEWAY_URL
-RUN yarn install --production
+RUN yarn install
 COPY . .
 RUN yarn build
 
